@@ -230,44 +230,57 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <!-- Skrip kalkulator versi ES5 (serasi telefon) -->
     <script>
-      document.addEventListener('DOMContentLoaded', function(){
-        const form = document.getElementById('calcForm');
-        if(!form) return;
+      document.addEventListener('DOMContentLoaded', function () {
+        var form = document.getElementById('calcForm');
+        if (!form) return;
 
-        const checkboxes = form.querySelectorAll('input[type="checkbox"]');
-        const totalEl = document.getElementById('total');
-        const sampleInput = document.getElementById('sampleCount');
-        const clearBtn = document.getElementById('clearForm');
-        const homeBtn  = document.getElementById('homeBtn');
+        var checkboxes = form.querySelectorAll('input[type="checkbox"]');
+        var totalEl = document.getElementById('total');
+        var sampleInput = document.getElementById('sampleCount');
+        var clearBtn = document.getElementById('clearForm');
+        var homeBtn  = document.getElementById('homeBtn');
 
-        function recalc(){
-          let total = 0;
-          checkboxes.forEach(c=>{ if(c.checked) total += parseFloat(c.value)||0; });
-          const samples = Math.max(1, parseInt(sampleInput.value)||1);
+        function recalc() {
+          var total = 0;
+          for (var i = 0; i < checkboxes.length; i++) {
+            var c = checkboxes[i];
+            if (c.checked) total += parseFloat(c.value) || 0;
+          }
+          var samples = parseInt(sampleInput.value, 10);
+          if (isNaN(samples) || samples < 1) samples = 1;
           sampleInput.value = samples;
           totalEl.textContent = (total * samples).toFixed(2);
         }
 
-        checkboxes.forEach(cb=>cb.addEventListener('change', recalc));
-        sampleInput.addEventListener('input', recalc);
+        for (var i = 0; i < checkboxes.length; i++) {
+          checkboxes[i].addEventListener('change', recalc, false);
+        }
 
-        if(clearBtn){
-          clearBtn.addEventListener('click', ()=>{
-            checkboxes.forEach(cb=>cb.checked = false);
+        if (sampleInput) {
+          sampleInput.addEventListener('input', recalc, false);
+          sampleInput.addEventListener('change', recalc, false); // untuk sesetengah pelayar mudah alih
+        }
+
+        if (clearBtn) {
+          clearBtn.addEventListener('click', function () {
+            for (var i = 0; i < checkboxes.length; i++) {
+              checkboxes[i].checked = false;
+            }
             sampleInput.value = 1;
             recalc();
             form.scrollTop = 0;
-          });
+          }, false);
         }
 
-        /* HOME -> Halaman utama (tutup artikel) */
-        if(homeBtn){
-          homeBtn.addEventListener('click', (e)=>{
-            e.preventDefault();
+        if (homeBtn) {
+          homeBtn.addEventListener('click', function (e) {
+            if (e && e.preventDefault) e.preventDefault();
             window.location.hash = '';
-            window.scrollTo({top:0, behavior:'smooth'});
-          });
+            window.scrollTo(0, 0);
+          }, false);
         }
 
         recalc();
