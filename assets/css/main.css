@@ -587,8 +587,8 @@ body.is-preload #footer{ opacity:0; }
 }
 .calc-item{
   display:flex; align-items:center; justify-content:space-between; gap:.5rem;
-  padding:.55rem .75rem; border:1px solid rgba(255,255,255,.25);
-  border-radius:8px; background:rgba(255,255,255,.06);
+  padding:.55rem .75rem; border:1px solid rgba(255,255,255,.05);
+  border-radius:8px; background:rgba(255,255,255,.03);
 }
 .calc-item input{margin-right:.5rem}
 .calc-name{flex:1;min-width:0}
