@@ -80,8 +80,8 @@
           <ul>
             <li><a href="#intro">Intro</a></li>
             <li><a href="#work">Calculator</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">ANALISA</a></li>
+            <li><a href="#contact">I- PAYMENT</a></li>
           </ul>
         </nav>
       </header>
@@ -89,7 +89,34 @@
       <div id="main">
         <article id="intro">
           <h2 class="major">Intro</h2>
-          <p>Selamat Datang ke Laman Web Makmal JMG Ipoh. Kami menyediakan pelbagai ujian mineral dan analisis geokimia dengan harga berpatutan.</p>
+          <p><strong>Makmal JMG Ipoh</strong> ialah fasiliti analisis di bawah Bahagian Perkhidmatan Teknikal (BPT) yang menyokong penerokaan sumber mineral, pengurusan geologi, serta keperluan industri dan penyelidikan. Kami menjalankan analisis geokimia dan ujian fizikal ke atas mineral, batuan, tanah, sedimen dan air untuk kawalan kualiti, pematuhan spesifikasi, penilaian sumber dan pembangunan produk.</p>
+
+          <h3>Skop Perkhidmatan</h3>
+          <ul>
+            <li><strong>Analisis geokimia</strong>: unsur major (SiO2, Al2O3, Fe2O3, CaO, MgO, Na2O, K2O, TiO2), minor/jejak (Zn, Cu, Pb, Cd, As, Se, Hg, Sb, Mo, W, Be, NiO, CoO, V2O5, ZrO2, Cr2O3) dan parameter khusus (U/Th) mengikut keperluan.</li>
+            <li><strong>Ujian fizikal</strong>: Water Absorption, Particle Size Analysis, Effective Size/Uniformity Coefficient, Water Soluble Content, Sieve Test, LOI, Organic Matter, Acid Solubility, Clay/Silt/Dust, Total Sulphur (SO3/SO4), Moisture 105°C, Specific Gravity dan pH.</li>
+            <li><strong>Khidmat teknikal</strong>: nasihat kaedah, keperluan persediaan sampel dan interpretasi asas keputusan.</li>
+          </ul>
+
+          <h3>Jaminan Kualiti</h3>
+          <p>Sistem pengurusan kualiti berasaskan ISO/IEC 17025:2017 dengan jejak ukur yang terurus, penggunaan bahan piawai/kawalan dalaman dan semakan teknikal sebelum laporan dikeluarkan.</p>
+
+          <h3>Aliran Kerja</h3>
+          <p>Pendaftaran → Persediaan sampel → Analisis → Kawalan kualiti → Laporan dan serahan kepada pelanggan.</p>
+
+          <h3>Penghantaran Sampel</h3>
+          <p>Pastikan disertakan: nama/jenis sampel, matriks, senarai ujian, kuantiti/berat, maklumat keselamatan (jika ada) dan rujukan projek. Kaunter: <em>Jalan Sultan Azlan Shah, 31400 Ipoh, Perak</em>.</p>
+        </article>
+
+        <!-- PERMOHONAN ANALISA -->
+        <article id="about">
+          <h2 class="major">PERMOHONAN ANALISA</h2>
+          <p>Untuk mempercepatkan urusan pendaftaran ujian, sila isi borang dalam talian di pautan berikut. Borang ini membantu kami merekod maklumat sampel dan ujian diminta sebelum penyerahan fizikal di kaunter.</p>
+          <p>
+            <a class="btn btn-primary" href="https://forms.gle/s5gRpcgkTyNcgxu56" target="_blank" rel="noopener">
+              Isi Borang Permohonan Analisa
+            </a>
+          </p>
         </article>
 
         <article id="work">
@@ -166,10 +193,25 @@
             </div>
           </form>
         </article>
+
+        <!-- I- PAYMENT -->
+        <article id="contact">
+          <h2 class="major">I- PAYMENT</h2>
+          <p>Untuk bayaran secara dalam talian, sila gunakan portal rasmi iPayment Perbendaharaan Malaysia.</p>
+          <p>
+            <a class="btn btn-primary" href="https://ipayment.anm.gov.my/" target="_blank" rel="noopener">
+              Buka I- PAYMENT
+            </a>
+          </p>
+          <p class="calc-hint">Simpan bukti pembayaran. Resit portal mungkin diperlukan semasa pengambilan laporan.</p>
+        </article>
       </div>
 
       <footer id="footer">
-        <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+        <p class="copyright">
+          &copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.
+          &nbsp;|&nbsp; <a href="mailto:makmalbptipoh@gmail.com">makmalbptipoh@gmail.com</a>
+        </p>
       </footer>
     </div>
 
@@ -215,7 +257,7 @@
         if(homeBtn){
           homeBtn.addEventListener('click', (e)=>{
             e.preventDefault();
-            window.location.hash = '';     // guna mekanisme tema untuk tutup artikel
+            window.location.hash = '';
             window.scrollTo({top:0, behavior:'smooth'});
           });
         }
