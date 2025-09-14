@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="title" content="Kaunter Makmal JMG Ipoh" />
     <meta name="description" content="Sistem pendaftaran & maklumat sampel pelanggan Makmal JMG Ipoh." />
-    <link rel="canonical" href="https://makmalbptipoh-jmg.github.io/kauntermakmal/" />
-    <meta name="theme-color" content="#1b1f22" />
 
     <!-- Open Graph (Facebook/WhatsApp) -->
     <meta property="og:type" content="website" />
@@ -30,23 +28,37 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           referrerpolicy="no-referrer" />
 
-    <!-- Styles utama (tambah ?v= untuk paksa refresh cache) -->
-    <link rel="stylesheet" href="assets/css/main.css?v=3" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css?v=3" /></noscript>
+    <!-- Styles utama (tambah version query untuk paksa refresh cache) -->
+    <link rel="stylesheet" href="assets/css/main.css?v=6" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css?v=6" /></noscript>
 
+    <!-- =================== OVERRIDES / GAYA TAMBAHAN =================== -->
     <style>
-      /* Kekalkan template; input bilangan sampel gelap dan jelas */
+      /* Betulkan kemungkinan typo property pada CSS asal */
+      #header .logo{
+        width:5.5rem; height:5.5rem; line-height:5.5rem;
+        border:1px solid #fff; border-radius:100%;
+      }
+
+      /* Layout & rupa senarai kalkulator */
       .calc-wrap{margin-top:.5rem}
       .calc-hint{opacity:.8;margin:.25rem 0 .75rem}
-      .calc-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.5rem;max-height:55vh;overflow:auto;padding-right:4px}
-      .calc-item{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.55rem .75rem;border:1px solid rgba(255,255,255,.25);border-radius:8px;background:rgba(255,255,255,.06)}
+      .calc-list{
+        display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+        gap:.5rem;max-height:55vh;overflow:auto;padding-right:4px
+      }
+      .calc-item{
+        display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+        padding:.55rem .75rem;border:1px solid rgba(255,255,255,.05);
+        border-radius:8px;background:rgba(255,255,255,.03)
+      }
       .calc-item input{margin-right:.5rem}
       .calc-name{flex:1;min-width:0}
       .calc-price{font-variant-numeric:tabular-nums;opacity:.95}
       .row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
       .sample-box label{margin-right:.25rem}
 
-      /* Input 50x25, latar gelap, teks terang */
+      /* Input kompak */
       #work .input-compact{
         width:50px;height:25px;line-height:25px;text-align:center;padding:0 .5rem;
         background:#111827;color:#fff;border:1px solid #374151;border-radius:6px;
@@ -54,24 +66,31 @@
       }
       #work .input-compact::placeholder{color:rgba(255,255,255,.6)}
       #work .input-compact:focus{outline:none;box-shadow:0 0 0 2px rgba(59,130,246,.55)}
+
+      /* Jumlah & bar tindakan */
       .total-box{margin:.25rem 0;font-weight:700}
       .action-bar{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.5rem}
+
+      /* Butang */
       .btn{display:inline-block;padding:.6rem 1rem;border-radius:8px;text-decoration:none;cursor:pointer;border:0}
       .btn-primary{background:#1e88e5;color:#fff}
       .btn-primary:hover{background:#1565c0}
       .btn-ghost{background:transparent;color:inherit;border:1px solid rgba(255,255,255,.35)}
       .btn-ghost:hover{background:rgba(255,255,255,.08)}
+
+      /* Mod cerah */
       @media (prefers-color-scheme: light){
-        .calc-item{background:#f8fafc;border:1px solid #e5e7eb}
+        .calc-item{background:#f1f5f9;border:1px solid #cbd5e1}
         .btn-ghost{border-color:#cbd5e1}
-        .btn-ghost:hover{background:#f1f5f9}
+        .btn-ghost:hover{background:#e2e8f0}
+        #work .calc-item .calc-name,
+        #work .calc-item .calc-price{color:#111827 !important}
       }
 
       /* Selaraskan label & input pada satu level */
       #work .sample-box{align-items:center;gap:.5rem}
       #work .sample-box label{
-        margin:0 .5rem 0 0;
-        display:inline-flex;align-items:center;
+        margin:0 .5rem 0 0;display:inline-flex;align-items:center;
         height:25px;line-height:25px;white-space:nowrap;
       }
 
@@ -83,11 +102,7 @@
         font-variant-caps:normal !important;
       }
 
-      /* Footer: hanya email, buang caps & dotted underline */
-      #footer .copyright{ text-transform:none!important; letter-spacing:0!important; font-size:.9rem; margin-bottom:0; }
-      #footer .copyright a{ border-bottom:0!important; text-decoration:none; }
-
-      /* Butang KOSONGKAN: warna & teks center */
+      /* Butang "Kosongkan" */
       #clearForm{
         background:#ef4444;border:1px solid #b91c1c;color:#fff;
         display:inline-flex;align-items:center;justify-content:center;
@@ -95,10 +110,34 @@
       }
       #clearForm:hover{background:#dc2626}
       #clearForm:focus{outline:2px solid rgba(239,68,68,.55);outline-offset:2px}
+
+      /* ========= KUNCI SAIZ & BOLD DI MOBILE & DESKTOP (KONSISTEN) ========= */
+      /* Tukar asas rem di seksyen #work sahaja supaya tidak ikut scaling global template */
+      #work{ font-size:16px; } /* 1rem = 16px di dalam seksyen ini */
+
+      /* Semua kotak pilihan */
+      #work .calc-item{
+        font-size:18px !important;   /* kekal besar di semua peranti */
+        font-weight:600 !important;  /* semi-bold */
+        line-height:1.35;
+        padding:.65rem 1rem;         /* sedikit lebih lapang */
+      }
+
+      /* Nama & harga – kekal jelas */
+      #work .calc-item .calc-name,
+      #work .calc-item .calc-price{
+        font-weight:600 !important;
+        letter-spacing:.02em;
+      }
+
+      /* Telefon sangat kecil: kecilkan 1px jika sempit */
+      @media (max-width: 400px){
+        #work .calc-item{ font-size:17px !important; }
+      }
     </style>
   </head>
-  <body class="is-preload">
 
+  <body class="is-preload">
     <div id="wrapper">
       <header id="header">
         <div class="logo"><span class="icon fa-gem"></span></div>
@@ -151,6 +190,7 @@
           </p>
         </article>
 
+        <!-- Kalkulator -->
         <article id="work">
           <h2 class="major">Pasir silika dan keluaran</h2>
           <form id="calcForm" class="calc-wrap" autocomplete="off">
@@ -248,14 +288,14 @@
 
     <div id="bg"></div>
 
-    <!-- Script (tambah ?v= untuk paksa refresh cache) -->
-    <script src="assets/js/jquery.min.js?v=3"></script>
-    <script src="assets/js/browser.min.js?v=3"></script>
-    <script src="assets/js/breakpoints.min.js?v=3"></script>
-    <script src="assets/js/util.js?v=3"></script>
-    <script src="assets/js/main.js?v=3"></script>
+    <!-- Skrip asal tema -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 
-    <!-- Skrip kalkulator versi ES5 (serasi telefon) -->
+    <!-- Kalkulator ES5 (serasi telefon) -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         var form = document.getElementById('calcForm');
@@ -308,10 +348,6 @@
         }
 
         recalc();
-
-        /* "Kunci" footer supaya tak kembali ke teks asal jika ada cache lama */
-        var cp = document.querySelector('#footer .copyright');
-        if (cp) cp.innerHTML = '<a href="mailto:makmalbptipoh@gmail.com">makmalbptipoh@gmail.com</a>';
       });
     </script>
   </body>
