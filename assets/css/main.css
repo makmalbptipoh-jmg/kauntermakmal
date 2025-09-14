@@ -622,8 +622,8 @@ body.is-preload #footer{ opacity:0; }
 /* Mod cerah – pastikan teks jelas di atas kad cerah */
 @media (prefers-color-scheme: light){
   .calc-item{
-    background:#f8fafc;
-    border:1px solid #e5e7eb;
+    background:#e2e8f0;
+    border:1px solid #cbd5e1;
     color:#111827 !important;                  /* teks dalam kad */
   }
   #work .calc-item .calc-name,
