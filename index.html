@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="ms">
   <head>
     <!-- Tajuk & metadata untuk tab browser + social preview -->
     <title>Kaunter Makmal JMG Ipoh</title>
@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="title" content="Kaunter Makmal JMG Ipoh" />
     <meta name="description" content="Sistem pendaftaran & maklumat sampel pelanggan Makmal JMG Ipoh." />
+    <link rel="canonical" href="https://makmalbptipoh-jmg.github.io/kauntermakmal/" />
+    <meta name="theme-color" content="#1b1f22" />
 
     <!-- Open Graph (Facebook/WhatsApp) -->
     <meta property="og:type" content="website" />
@@ -28,9 +30,9 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           referrerpolicy="no-referrer" />
 
-    <!-- Styles utama -->
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <!-- Styles utama (tambah ?v= untuk paksa refresh cache) -->
+    <link rel="stylesheet" href="assets/css/main.css?v=3" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css?v=3" /></noscript>
 
     <style>
       /* Kekalkan template; input bilangan sampel gelap dan jelas */
@@ -80,6 +82,10 @@
         letter-spacing:normal !important;
         font-variant-caps:normal !important;
       }
+
+      /* Footer: hanya email, buang caps & dotted underline */
+      #footer .copyright{ text-transform:none!important; letter-spacing:0!important; font-size:.9rem; margin-bottom:0; }
+      #footer .copyright a{ border-bottom:0!important; text-decoration:none; }
 
       /* Butang KOSONGKAN: warna & teks center */
       #clearForm{
@@ -242,11 +248,12 @@
 
     <div id="bg"></div>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <!-- Script (tambah ?v= untuk paksa refresh cache) -->
+    <script src="assets/js/jquery.min.js?v=3"></script>
+    <script src="assets/js/browser.min.js?v=3"></script>
+    <script src="assets/js/breakpoints.min.js?v=3"></script>
+    <script src="assets/js/util.js?v=3"></script>
+    <script src="assets/js/main.js?v=3"></script>
 
     <!-- Skrip kalkulator versi ES5 (serasi telefon) -->
     <script>
@@ -278,7 +285,7 @@
 
         if (sampleInput) {
           sampleInput.addEventListener('input', recalc, false);
-          sampleInput.addEventListener('change', recalc, false); // untuk sesetengah pelayar mudah alih
+          sampleInput.addEventListener('change', recalc, false);
         }
 
         if (clearBtn) {
@@ -301,9 +308,11 @@
         }
 
         recalc();
+
+        /* "Kunci" footer supaya tak kembali ke teks asal jika ada cache lama */
+        var cp = document.querySelector('#footer .copyright');
+        if (cp) cp.innerHTML = '<a href="mailto:makmalbptipoh@gmail.com">makmalbptipoh@gmail.com</a>';
       });
     </script>
   </body>
 </html>
-
-
