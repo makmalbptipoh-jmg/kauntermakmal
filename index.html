@@ -83,6 +83,19 @@ z-index:1;
   body.is-preload #bg:before{
     background-color:#000;
   }
+  /* Paksa tunjuk background image jelas, buang overlay gelap */
+#bg:before{
+background: none !important;
+}
+
+#bg:after{
+background-image: url("img/bp-lab.jpg") !important;
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+transform: none;
+filter: none;
+}
 
   /* =================== OVERRIDES / GAYA TAMBAHAN =================== */
 
@@ -386,4 +399,5 @@ z-index:1;
   </body>
 </html>
 ::contentReference[oaicite:0]{index=0}
+
 
