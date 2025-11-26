@@ -1,240 +1,3 @@
-<!DOCTYPE HTML>
-
-<html lang="ms">
-  <head>
-    <title>Kaunter Makmal JMG Ipoh</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="title" content="Kaunter Makmal JMG Ipoh" />
-    <meta name="description" content="Sistem pendaftaran & maklumat sampel pelanggan Makmal JMG Ipoh." />
-
-```
-<!-- Open Graph -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://makmalbptipoh-jmg.github.io/kauntermakmal/" />
-<meta property="og:site_name" content="Kaunter Makmal JMG Ipoh" />
-<meta property="og:title" content="Kaunter Makmal JMG Ipoh" />
-<meta property="og:description" content="Sistem pendaftaran & maklumat sampel pelanggan Makmal JMG Ipoh." />
-<meta property="og:image" content="https://makmalbptipoh-jmg.github.io/kauntermakmal/assets/images/og-cover.jpg" />
-<meta property="og:locale" content="ms_MY" />
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Kaunter Makmal JMG Ipoh" />
-<meta name="twitter:description" content="Sistem pendaftaran & maklumat sampel pelanggan Makmal JMG Ipoh." />
-<meta name="twitter:image" content="https://makmalbptipoh-jmg.github.io/kauntermakmal/assets/images/og-cover.jpg" />
-
-<!-- Font Awesome -->
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      referrerpolicy="no-referrer" />
-
-<!-- CSS tema -->
-<link rel="stylesheet" href="assets/css/main.css?v=6" />
-<noscript><link rel="stylesheet" href="assets/css/noscript.css?v=6" /></noscript>
-
-<style>
-  /* BACKGROUND IMAGE BELAKANG SAHAJA */
-
-  #bg{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100vh;
-z-index:-1; /* TURUNKAN SUPAYA DUDUK DI BELAKANG */
-}
-  #wrapper{
-position:relative;
-z-index:3;
-}
-
-  #bg:before,
-  #bg:after{
-    content:'';
-    display:block;
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-  }
-
-  /* tiada overlay gelap */
-  #bg:before{
-    background:none;
-  }
-
-  #bg:after{
-    background-image:url("img/bp-lab.jpg");
-    background-position:center;
-    background-size:cover;
-    background-repeat:no-repeat;
-    transform:none;
-    filter:none;
-    z-index:1;
-  }
-
-  body.is-article-visible #bg:after{
-    filter:blur(.2rem);
-  }
-
-  body.is-preload #bg:before{
-    background-color:#000;
-  }
-
-  /* OVERRIDES / GAYA TAMBAHAN */
-
-  #header .logo{
-    width:5.5rem;
-    height:5.5rem;
-    line-height:5.5rem;
-    border:1px solid #fff;
-    border-radius:100%;
-  }
-
-  .calc-wrap{margin-top:.5rem}
-  .calc-hint{opacity:.8;margin:.25rem 0 .75rem}
-  .calc-list{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:.5rem;
-    max-height:55vh;
-    overflow:auto;
-    padding-right:4px;
-  }
-  .calc-item{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:.5rem;
-    padding:.55rem .75rem;
-    border:1px solid rgba(255,255,255,.05);
-    border-radius:8px;
-    background:rgba(255,255,255,.03);
-  }
-  .calc-item input{margin-right:.5rem}
-  .calc-name{flex:1;min-width:0}
-  .calc-price{font-variant-numeric:tabular-nums;opacity:.95}
-  .row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
-  .sample-box label{margin-right:.25rem}
-
-  #work .input-compact{
-    width:50px;
-    height:25px;
-    line-height:25px;
-    text-align:center;
-    padding:0 .5rem;
-    background:#111827;
-    color:#fff;
-    border:1px solid #374151;
-    border-radius:6px;
-    font-weight:700;
-    letter-spacing:.02em;
-    caret-color:#fff;
-  }
-  #work .input-compact::placeholder{color:rgba(255,255,255,.6)}
-  #work .input-compact:focus{outline:none;box-shadow:0 0 0 2px rgba(59,130,246,.55)}
-
-  .total-box{margin:.25rem 0;font-weight:700}
-  .action-bar{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.5rem}
-
-  .btn{
-    display:inline-block;
-    padding:.6rem 1rem;
-    border-radius:8px;
-    text-decoration:none;
-    cursor:pointer;
-    border:0;
-  }
-  .btn-primary{background:#1e88e5;color:#fff}
-  .btn-primary:hover{background:#1565c0}
-  .btn-ghost{background:transparent;color:inherit;border:1px solid rgba(255,255,255,.35)}
-  .btn-ghost:hover{background:rgba(255,255,255,.08)}
-
-  @media (prefers-color-scheme: light){
-    .calc-item{background:#f1f5f9;border:1px solid #cbd5e1}
-    .btn-ghost{border-color:#cbd5e1}
-    .btn-ghost:hover{background:#e2e8f0}
-    #work .calc-item .calc-name,
-    #work .calc-item .calc-price{color:#111827 !important}
-  }
-
-  #work .sample-box{align-items:center;gap:.5rem}
-  #work .sample-box label{
-    margin:0 .5rem 0 0;
-    display:inline-flex;
-    align-items:center;
-    height:25px;
-    line-height:25px;
-    white-space:nowrap;
-  }
-
-  #work .calc-item .calc-name,
-  #work .calc-item .calc-price{
-    text-transform:none !important;
-    letter-spacing:normal !important;
-    font-variant-caps:normal !important;
-  }
-
-  #clearForm{
-    background:#ef4444;
-    border:1px solid #b91c1c;
-    color:#fff;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    min-width:140px;
-    font-weight:700;
-  }
-  #clearForm:hover{background:#dc2626}
-  #clearForm:focus{outline:2px solid rgba(239,68,68,.55);outline-offset:2px}
-
-  #work{ font-size:16px; }
-
-  #work .calc-item{
-    font-size:18px !important;
-    font-weight:600 !important;
-    line-height:1.35;
-    padding:.65rem 1rem;
-  }
-
-  #work .calc-item .calc-name,
-  #work .calc-item .calc-price{
-    font-weight:600 !important;
-    letter-spacing:.02em;
-  }
-
-  @media (max-width: 400px){
-    #work .calc-item{ font-size:17px !important; }
-  }
-</style>
-```
-
-  </head>
-
-  <body class="is-preload">
-    <div id="wrapper">
-      <header id="header">
-        <div class="logo"><span class="icon fa-gem"></span></div>
-        <div class="content">
-          <div class="inner">
-            <h1>KAUNTER MAKMAL JMG IPOH</h1>
-            <p>Sistem pendaftaran dan maklumat sampel untuk pelanggan makmal JMG Ipoh.</p>
-          </div>
-        </div>
-        <nav>
-          <ul>
-            <li><a href="#intro">Intro</a></li>
-            <li><a href="#work">Calculator</a></li>
-            <li><a href="#about">ANALISA</a></li>
-            <li><a href="#contact">I- PAYMENT</a></li>
-          </ul>
-        </nav>
-      </header>
-
-```
   <div id="main">
     <article id="intro">
       <h2 class="major">Intro</h2>
@@ -242,19 +5,19 @@ z-index:3;
 
       <h3>Skop Perkhidmatan</h3>
       <ul>
-        <li><strong>Analisis geokimia</strong>: unsur major (SiO2, Al2O3, Fe2O3, CaO, MgO, Na2O, K2O, TiO2), minor/jejak (Zn, Cu, Pb, Cd, As, Se, Hg, Sb, Mo, W, Be, NiO, CoO, V2O5, ZrO2, Cr2O3) dan parameter khusus (U/Th) mengikut keperluan.</li>
-        <li><strong>Ujian fizikal</strong>: Water Absorption, Particle Size Analysis, Effective Size/Uniformity Coefficient, Water Soluble Content, Sieve Test, LOI, Organic Matter, Acid Solubility, Clay/Silt/Dust, Total Sulphur (SO3/SO4), Moisture 105°C, Specific Gravity dan pH.</li>
+        <li><strong>Analisis geokimia</strong>: unsur major (SiO2, Al2O3, Fe2O3, CaO, MgO, Na2O, K2O, TiO2), minor atau jejak (Zn, Cu, Pb, Cd, As, Se, Hg, Sb, Mo, W, Be, NiO, CoO, V2O5, ZrO2, Cr2O3) dan parameter khusus (U atau Th) mengikut keperluan.</li>
+        <li><strong>Ujian fizikal</strong>: Water Absorption, Particle Size Analysis, Effective Size atau Uniformity Coefficient, Water Soluble Content, Sieve Test, LOI, Organic Matter, Acid Solubility, Clay atau Silt atau Dust, Total Sulphur (SO3 atau SO4), Moisture 105°C, Specific Gravity dan pH.</li>
         <li><strong>Khidmat teknikal</strong>: nasihat kaedah, keperluan persediaan sampel dan interpretasi asas keputusan.</li>
       </ul>
 
       <h3>Jaminan Kualiti</h3>
-      <p>Sistem pengurusan kualiti berasaskan ISO/IEC 17025:2017 dengan jejak ukur yang terurus, penggunaan bahan piawai/kawalan dalaman dan semakan teknikal sebelum laporan dikeluarkan.</p>
+      <p>Sistem pengurusan kualiti berasaskan ISO atau IEC 17025:2017 dengan jejak ukur yang terurus, penggunaan bahan piawai atau kawalan dalaman dan semakan teknikal sebelum laporan dikeluarkan.</p>
 
       <h3>Aliran Kerja</h3>
       <p>Pendaftaran → Persediaan sampel → Analisis → Kawalan kualiti → Laporan dan serahan kepada pelanggan.</p>
 
       <h3>Penghantaran Sampel</h3>
-      <p>Pastikan disertakan: nama/jenis sampel, matriks, senarai ujian, kuantiti/berat, maklumat keselamatan (jika ada) dan rujukan projek. Kaunter: <em>Jalan Sultan Azlan Shah, 31400 Ipoh, Perak</em>.</p>
+      <p>Pastikan disertakan nama atau jenis sampel, matriks, senarai ujian, kuantiti atau berat, maklumat keselamatan jika ada dan rujukan projek. Kaunter: <em>Jalan Sultan Azlan Shah, 31400 Ipoh, Perak</em>.</p>
     </article>
 
     <article id="about">
@@ -278,7 +41,6 @@ z-index:3;
         </div>
 
         <div class="calc-list">
-          <!-- senarai analisa sama macam sebelum ini -->
           <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">SiO2 (Pasir)</span></span><span class="calc-price">RM 70</span></label>
           <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Al2O3</span></span><span class="calc-price">RM 70</span></label>
           <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Fe2O3</span></span><span class="calc-price">RM 70</span></label>
@@ -359,12 +121,14 @@ z-index:3;
 
 <div id="bg"></div>
 
+<!-- Skrip asal tema -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/browser.min.js"></script>
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
 
+<!-- Kalkulator -->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('calcForm');
@@ -419,10 +183,3 @@ z-index:3;
     recalc();
   });
 </script>
-```
-
-  </body>
-</html>
-::contentReference[oaicite:0]{index=0}
-
-
