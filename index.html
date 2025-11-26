@@ -1,140 +1,181 @@
 <!DOCTYPE HTML>
+
 <html lang="ms">
   <head>
-    <!-- Tajuk & metadata untuk tab browser + social preview -->
     <title>Kaunter Makmal JMG Ipoh</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="title" content="Kaunter Makmal JMG Ipoh" />
     <meta name="description" content="Sistem pendaftaran & maklumat sampel pelanggan Makmal JMG Ipoh." />
 
-    <!-- Open Graph (Facebook/WhatsApp) -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://makmalbptipoh-jmg.github.io/kauntermakmal/" />
-    <meta property="og:site_name" content="Kaunter Makmal JMG Ipoh" />
-    <meta property="og:title" content="Kaunter Makmal JMG Ipoh" />
-    <meta property="og:description" content="Sistem pendaftaran & maklumat sampel pelanggan Makmal JMG Ipoh." />
-    <meta property="og:image" content="https://makmalbptipoh-jmg.github.io/kauntermakmal/assets/images/og-cover.jpg" />
-    <meta property="og:locale" content="ms_MY" />
+```
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://makmalbptipoh-jmg.github.io/kauntermakmal/" />
+<meta property="og:site_name" content="Kaunter Makmal JMG Ipoh" />
+<meta property="og:title" content="Kaunter Makmal JMG Ipoh" />
+<meta property="og:description" content="Sistem pendaftaran & maklumat sampel pelanggan Makmal JMG Ipoh." />
+<meta property="og:image" content="https://makmalbptipoh-jmg.github.io/kauntermakmal/assets/images/og-cover.jpg" />
+<meta property="og:locale" content="ms_MY" />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Kaunter Makmal JMG Ipoh" />
-    <meta name="twitter:description" content="Sistem pendaftaran & maklumat sampel pelanggan Makmal JMG Ipoh." />
-    <meta name="twitter:image" content="https://makmalbptipoh-jmg.github.io/kauntermakmal/assets/images/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Kaunter Makmal JMG Ipoh" />
+<meta name="twitter:description" content="Sistem pendaftaran & maklumat sampel pelanggan Makmal JMG Ipoh." />
+<meta name="twitter:image" content="https://makmalbptipoh-jmg.github.io/kauntermakmal/assets/images/og-cover.jpg" />
 
-    <!-- Font Awesome via CDN (untuk ikon .fa-gem) -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-          referrerpolicy="no-referrer" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      referrerpolicy="no-referrer" />
 
-    <!-- Styles utama (tambah version query untuk paksa refresh cache) -->
-    <link rel="stylesheet" href="assets/css/main.css?v=6" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css?v=6" /></noscript>
+<link rel="stylesheet" href="assets/css/main.css?v=6" />
+<noscript><link rel="stylesheet" href="assets/css/noscript.css?v=6" /></noscript>
 
-    <!-- =================== OVERRIDES / GAYA TAMBAHAN =================== -->
-    <style>
-      /* Betulkan kemungkinan typo property pada CSS asal */
-      #header .logo{
-        width:5.5rem; height:5.5rem; line-height:5.5rem;
-        border:1px solid #fff; border-radius:100%;
-      }
+<style>
+  /* ========== BACKGROUND GAMBAR UNTUK #bg ========== */
 
-      /* Layout & rupa senarai kalkulator */
-      .calc-wrap{margin-top:.5rem}
-      .calc-hint{opacity:.8;margin:.25rem 0 .75rem}
-      .calc-list{
-        display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-        gap:.5rem;max-height:55vh;overflow:auto;padding-right:4px
-      }
-      .calc-item{
-        display:flex;align-items:center;justify-content:space-between;gap:.5rem;
-        padding:.55rem .75rem;border:1px solid rgba(255,255,255,.05);
-        border-radius:8px;background:rgba(255,255,255,.03)
-      }
-      .calc-item input{margin-right:.5rem}
-      .calc-name{flex:1;min-width:0}
-      .calc-price{font-variant-numeric:tabular-nums;opacity:.95}
-      .row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
-      .sample-box label{margin-right:.25rem}
+  #bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    z-index:1;
+  }
 
-      /* Input kompak */
-      #work .input-compact{
-        width:50px;height:25px;line-height:25px;text-align:center;padding:0 .5rem;
-        background:#111827;color:#fff;border:1px solid #374151;border-radius:6px;
-        font-weight:700;letter-spacing:.02em;caret-color:#fff
-      }
-      #work .input-compact::placeholder{color:rgba(255,255,255,.6)}
-      #work .input-compact:focus{outline:none;box-shadow:0 0 0 2px rgba(59,130,246,.55)}
+  #bg:before,
+  #bg:after{
+    content:'';
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+  }
 
-      /* Jumlah & bar tindakan */
-      .total-box{margin:.25rem 0;font-weight:700}
-      .action-bar{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.5rem}
+  #bg:before{
+    transition:background-color 2.5s ease-in-out;
+    transition-delay:.75s;
+    background-image:linear-gradient(
+      to top,
+      rgba(19,21,25,.8),
+      rgba(19,21,25,.55)
+    );
+    background-size:auto;
+    background-position:center;
+    background-repeat:no-repeat;
+    z-index:2;
+  }
 
-      /* Butang */
-      .btn{display:inline-block;padding:.6rem 1rem;border-radius:8px;text-decoration:none;cursor:pointer;border:0}
-      .btn-primary{background:#1e88e5;color:#fff}
-      .btn-primary:hover{background:#1565c0}
-      .btn-ghost{background:transparent;color:inherit;border:1px solid rgba(255,255,255,.35)}
-      .btn-ghost:hover{background:rgba(255,255,255,.08)}
+  #bg:after{
+    transform:scale(1.125);
+    transition:transform .325s ease-in-out, filter .325s ease-in-out;
+    background-image:url("img/romain-virtuel-R0R4ZZK3V_M-unsplash.jpg");
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    z-index:1;
+  }
 
-      /* Mod cerah */
-      @media (prefers-color-scheme: light){
-        .calc-item{background:#f1f5f9;border:1px solid #cbd5e1}
-        .btn-ghost{border-color:#cbd5e1}
-        .btn-ghost:hover{background:#e2e8f0}
-        #work .calc-item .calc-name,
-        #work .calc-item .calc-price{color:#111827 !important}
-      }
+  body.is-article-visible #bg:after{
+    transform:scale(1.0825);
+    filter:blur(.2rem);
+  }
 
-      /* Selaraskan label & input pada satu level */
-      #work .sample-box{align-items:center;gap:.5rem}
-      #work .sample-box label{
-        margin:0 .5rem 0 0;display:inline-flex;align-items:center;
-        height:25px;line-height:25px;white-space:nowrap;
-      }
+  body.is-preload #bg:before{
+    background-color:#000;
+  }
 
-      /* Jangan CAPS untuk nama elemen */
-      #work .calc-item .calc-name,
-      #work .calc-item .calc-price{
-        text-transform:none !important;
-        letter-spacing:normal !important;
-        font-variant-caps:normal !important;
-      }
+  /* =================== OVERRIDES / GAYA TAMBAHAN =================== */
 
-      /* Butang "Kosongkan" */
-      #clearForm{
-        background:#ef4444;border:1px solid #b91c1c;color:#fff;
-        display:inline-flex;align-items:center;justify-content:center;
-        text-align:center;min-width:140px;font-weight:700;
-      }
-      #clearForm:hover{background:#dc2626}
-      #clearForm:focus{outline:2px solid rgba(239,68,68,.55);outline-offset:2px}
+  #header .logo{
+    width:5.5rem; height:5.5rem; line-height:5.5rem;
+    border:1px solid #fff; border-radius:100%;
+  }
 
-      /* ========= KUNCI SAIZ & BOLD DI MOBILE & DESKTOP (KONSISTEN) ========= */
-      /* Tukar asas rem di seksyen #work sahaja supaya tidak ikut scaling global template */
-      #work{ font-size:16px; } /* 1rem = 16px di dalam seksyen ini */
+  .calc-wrap{margin-top:.5rem}
+  .calc-hint{opacity:.8;margin:.25rem 0 .75rem}
+  .calc-list{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:.5rem;max-height:55vh;overflow:auto;padding-right:4px
+  }
+  .calc-item{
+    display:flex;align-items:center;justify-content:space-between;gap:.5rem;
+    padding:.55rem .75rem;border:1px solid rgba(255,255,255,.05);
+    border-radius:8px;background:rgba(255,255,255,.03)
+  }
+  .calc-item input{margin-right:.5rem}
+  .calc-name{flex:1;min-width:0}
+  .calc-price{font-variant-numeric:tabular-nums;opacity:.95}
+  .row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+  .sample-box label{margin-right:.25rem}
 
-      /* Semua kotak pilihan */
-      #work .calc-item{
-        font-size:18px !important;   /* kekal besar di semua peranti */
-        font-weight:600 !important;  /* semi-bold */
-        line-height:1.35;
-        padding:.65rem 1rem;         /* sedikit lebih lapang */
-      }
+  #work .input-compact{
+    width:50px;height:25px;line-height:25px;text-align:center;padding:0 .5rem;
+    background:#111827;color:#fff;border:1px solid #374151;border-radius:6px;
+    font-weight:700;letter-spacing:.02em;caret-color:#fff
+  }
+  #work .input-compact::placeholder{color:rgba(255,255,255,.6)}
+  #work .input-compact:focus{outline:none;box-shadow:0 0 0 2px rgba(59,130,246,.55)}
 
-      /* Nama & harga – kekal jelas */
-      #work .calc-item .calc-name,
-      #work .calc-item .calc-price{
-        font-weight:600 !important;
-        letter-spacing:.02em;
-      }
+  .total-box{margin:.25rem 0;font-weight:700}
+  .action-bar{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.5rem}
 
-      /* Telefon sangat kecil: kecilkan 1px jika sempit */
-      @media (max-width: 400px){
-        #work .calc-item{ font-size:17px !important; }
-      }
-    </style>
+  .btn{display:inline-block;padding:.6rem 1rem;border-radius:8px;text-decoration:none;cursor:pointer;border:0}
+  .btn-primary{background:#1e88e5;color:#fff}
+  .btn-primary:hover{background:#1565c0}
+  .btn-ghost{background:transparent;color:inherit;border:1px solid rgba(255,255,255,.35)}
+  .btn-ghost:hover{background:rgba(255,255,255,.08)}
+
+  @media (prefers-color-scheme: light){
+    .calc-item{background:#f1f5f9;border:1px solid #cbd5e1}
+    .btn-ghost{border-color:#cbd5e1}
+    .btn-ghost:hover{background:#e2e8f0}
+    #work .calc-item .calc-name,
+    #work .calc-item .calc-price{color:#111827 !important}
+  }
+
+  #work .sample-box{align-items:center;gap:.5rem}
+  #work .sample-box label{
+    margin:0 .5rem 0 0;display:inline-flex;align-items:center;
+    height:25px;line-height:25px;white-space:nowrap;
+  }
+
+  #work .calc-item .calc-name,
+  #work .calc-item .calc-price{
+    text-transform:none !important;
+    letter-spacing:normal !important;
+    font-variant-caps:normal !important;
+  }
+
+  #clearForm{
+    background:#ef4444;border:1px solid #b91c1c;color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;
+    text-align:center;min-width:140px;font-weight:700;
+  }
+  #clearForm:hover{background:#dc2626}
+  #clearForm:focus{outline:2px solid rgba(239,68,68,.55);outline-offset:2px}
+
+  #work{ font-size:16px; }
+
+  #work .calc-item{
+    font-size:18px !important;
+    font-weight:600 !important;
+    line-height:1.35;
+    padding:.65rem 1rem;
+  }
+
+  #work .calc-item .calc-name,
+  #work .calc-item .calc-price{
+    font-weight:600 !important;
+    letter-spacing:.02em;
+  }
+
+  @media (max-width: 400px){
+    #work .calc-item{ font-size:17px !important; }
+  }
+</style>
+```
+
   </head>
 
   <body class="is-preload">
@@ -157,198 +198,192 @@
         </nav>
       </header>
 
-      <div id="main">
-        <article id="intro">
-          <h2 class="major">Intro</h2>
-          <p><strong>Makmal JMG Ipoh</strong> ialah fasiliti analisis di bawah Bahagian Perkhidmatan Teknikal (BPT) yang menyokong penerokaan sumber mineral, pengurusan geologi, serta keperluan industri dan penyelidikan. Kami menjalankan analisis geokimia dan ujian fizikal ke atas mineral, batuan, tanah, sedimen dan air untuk kawalan kualiti, pematuhan spesifikasi, penilaian sumber dan pembangunan produk.</p>
+```
+  <div id="main">
+    <article id="intro">
+      <h2 class="major">Intro</h2>
+      <p><strong>Makmal JMG Ipoh</strong> ialah fasiliti analisis di bawah Bahagian Perkhidmatan Teknikal (BPT) yang menyokong penerokaan sumber mineral, pengurusan geologi, serta keperluan industri dan penyelidikan. Kami menjalankan analisis geokimia dan ujian fizikal ke atas mineral, batuan, tanah, sedimen dan air untuk kawalan kualiti, pematuhan spesifikasi, penilaian sumber dan pembangunan produk.</p>
 
-          <h3>Skop Perkhidmatan</h3>
-          <ul>
-            <li><strong>Analisis geokimia</strong>: unsur major (SiO2, Al2O3, Fe2O3, CaO, MgO, Na2O, K2O, TiO2), minor/jejak (Zn, Cu, Pb, Cd, As, Se, Hg, Sb, Mo, W, Be, NiO, CoO, V2O5, ZrO2, Cr2O3) dan parameter khusus (U/Th) mengikut keperluan.</li>
-            <li><strong>Ujian fizikal</strong>: Water Absorption, Particle Size Analysis, Effective Size/Uniformity Coefficient, Water Soluble Content, Sieve Test, LOI, Organic Matter, Acid Solubility, Clay/Silt/Dust, Total Sulphur (SO3/SO4), Moisture 105°C, Specific Gravity dan pH.</li>
-            <li><strong>Khidmat teknikal</strong>: nasihat kaedah, keperluan persediaan sampel dan interpretasi asas keputusan.</li>
-          </ul>
+      <h3>Skop Perkhidmatan</h3>
+      <ul>
+        <li><strong>Analisis geokimia</strong>: unsur major (SiO2, Al2O3, Fe2O3, CaO, MgO, Na2O, K2O, TiO2), minor/jejak (Zn, Cu, Pb, Cd, As, Se, Hg, Sb, Mo, W, Be, NiO, CoO, V2O5, ZrO2, Cr2O3) dan parameter khusus (U/Th) mengikut keperluan.</li>
+        <li><strong>Ujian fizikal</strong>: Water Absorption, Particle Size Analysis, Effective Size/Uniformity Coefficient, Water Soluble Content, Sieve Test, LOI, Organic Matter, Acid Solubility, Clay/Silt/Dust, Total Sulphur (SO3/SO4), Moisture 105°C, Specific Gravity dan pH.</li>
+        <li><strong>Khidmat teknikal</strong>: nasihat kaedah, keperluan persediaan sampel dan interpretasi asas keputusan.</li>
+      </ul>
 
-          <h3>Jaminan Kualiti</h3>
-          <p>Sistem pengurusan kualiti berasaskan ISO/IEC 17025:2017 dengan jejak ukur yang terurus, penggunaan bahan piawai/kawalan dalaman dan semakan teknikal sebelum laporan dikeluarkan.</p>
+      <h3>Jaminan Kualiti</h3>
+      <p>Sistem pengurusan kualiti berasaskan ISO/IEC 17025:2017 dengan jejak ukur yang terurus, penggunaan bahan piawai/kawalan dalaman dan semakan teknikal sebelum laporan dikeluarkan.</p>
 
-          <h3>Aliran Kerja</h3>
-          <p>Pendaftaran → Persediaan sampel → Analisis → Kawalan kualiti → Laporan dan serahan kepada pelanggan.</p>
+      <h3>Aliran Kerja</h3>
+      <p>Pendaftaran → Persediaan sampel → Analisis → Kawalan kualiti → Laporan dan serahan kepada pelanggan.</p>
 
-          <h3>Penghantaran Sampel</h3>
-          <p>Pastikan disertakan: nama/jenis sampel, matriks, senarai ujian, kuantiti/berat, maklumat keselamatan (jika ada) dan rujukan projek. Kaunter: <em>Jalan Sultan Azlan Shah, 31400 Ipoh, Perak</em>.</p>
-        </article>
+      <h3>Penghantaran Sampel</h3>
+      <p>Pastikan disertakan: nama/jenis sampel, matriks, senarai ujian, kuantiti/berat, maklumat keselamatan (jika ada) dan rujukan projek. Kaunter: <em>Jalan Sultan Azlan Shah, 31400 Ipoh, Perak</em>.</p>
+    </article>
 
-        <!-- PERMOHONAN ANALISA -->
-        <article id="about">
-          <h2 class="major">PERMOHONAN ANALISA</h2>
-          <p>Untuk mempercepatkan urusan pendaftaran ujian, sila isi borang dalam talian di pautan berikut. Borang ini membantu kami merekod maklumat sampel dan ujian diminta sebelum penyerahan fizikal di kaunter.</p>
-          <p>
-            <a class="btn btn-primary" href="https://forms.gle/s5gRpcgkTyNcgxu56" target="_blank" rel="noopener">
-              Isi Borang Permohonan Analisa
-            </a>
-          </p>
-        </article>
+    <article id="about">
+      <h2 class="major">PERMOHONAN ANALISA</h2>
+      <p>Untuk mempercepatkan urusan pendaftaran ujian, sila isi borang dalam talian di pautan berikut. Borang ini membantu kami merekod maklumat sampel dan ujian diminta sebelum penyerahan fizikal di kaunter.</p>
+      <p>
+        <a class="btn btn-primary" href="https://forms.gle/s5gRpcgkTyNcgxu56" target="_blank" rel="noopener">
+          Isi Borang Permohonan Analisa
+        </a>
+      </p>
+    </article>
 
-        <!-- Kalkulator -->
-        <article id="work">
-          <h2 class="major">Pasir silika dan keluaran</h2>
-          <form id="calcForm" class="calc-wrap" autocomplete="off">
-            <p class="calc-hint">Masukkan jumlah sampel dan pilih analisa yang diperlukan.</p>
+    <article id="work">
+      <h2 class="major">Pasir silika dan keluaran</h2>
+      <form id="calcForm" class="calc-wrap" autocomplete="off">
+        <p class="calc-hint">Masukkan jumlah sampel dan pilih analisa yang diperlukan.</p>
 
-            <div class="row sample-box" aria-live="polite">
-              <label for="sampleCount"><strong>Bilangan Sampel</strong></label>
-              <input type="number" id="sampleCount" class="input-compact" value="1" min="1" step="1" inputmode="numeric" />
-            </div>
+        <div class="row sample-box" aria-live="polite">
+          <label for="sampleCount"><strong>Bilangan Sampel</strong></label>
+          <input type="number" id="sampleCount" class="input-compact" value="1" min="1" step="1" inputmode="numeric" />
+        </div>
 
-            <div class="calc-list">
-              <!-- Major -->
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">SiO2 (Pasir)</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Al2O3</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Fe2O3</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">CaO</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">MgO</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Na2O</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">K2O</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">TiO2</span></span><span class="calc-price">RM 70</span></label>
+        <div class="calc-list">
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">SiO2 (Pasir)</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Al2O3</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Fe2O3</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">CaO</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">MgO</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Na2O</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">K2O</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">TiO2</span></span><span class="calc-price">RM 70</span></label>
 
-              <!-- Minor -->
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">P</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Mn</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">BaO</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">SrO</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">P</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Mn</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">BaO</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">SrO</span></span><span class="calc-price">RM 70</span></label>
 
-              <!-- Trace -->
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">NiO</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">CoO</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">V2O5</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">ZrO2</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Zn</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Cu</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Cr2O3</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Sn</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Pb</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Cd</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">As</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Se</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Hg</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Sb</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Mo</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">W</span></span><span class="calc-price">RM 70</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Be</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">NiO</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">CoO</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">V2O5</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">ZrO2</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Zn</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Cu</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Cr2O3</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Sn</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Pb</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Cd</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">As</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Se</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Hg</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Sb</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Mo</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">W</span></span><span class="calc-price">RM 70</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="70"><span class="calc-name">Be</span></span><span class="calc-price">RM 70</span></label>
 
-              <!-- Radioisotop/elemen khas -->
-              <label class="calc-item"><span><input type="checkbox" value="100"><span class="calc-name">U (200 g)</span></span><span class="calc-price">RM 100</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="100"><span class="calc-name">Th (200 g)</span></span><span class="calc-price">RM 100</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="100"><span class="calc-name">U (200 g)</span></span><span class="calc-price">RM 100</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="100"><span class="calc-name">Th (200 g)</span></span><span class="calc-price">RM 100</span></label>
 
-              <!-- Fizikal -->
-              <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Water Absorption</span></span><span class="calc-price">RM 50</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Particle Size Analysis</span></span><span class="calc-price">RM 50</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Effective Size / Uniformity Coefficient</span></span><span class="calc-price">RM 50</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Water Soluble Content</span></span><span class="calc-price">RM 50</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Sieve Test</span></span><span class="calc-price">RM 50</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="30"><span class="calc-name">LOI pada 900°C</span></span><span class="calc-price">RM 30</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Organic Matter</span></span><span class="calc-price">RM 50</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Acid Solubility</span></span><span class="calc-price">RM 50</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Clay, Silt and Dust</span></span><span class="calc-price">RM 50</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Total Sulphur as SO3/SO4</span></span><span class="calc-price">RM 50</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="15"><span class="calc-name">Moisture 105°C</span></span><span class="calc-price">RM 15</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="20"><span class="calc-name">Specific Gravity (500 g)</span></span><span class="calc-price">RM 20</span></label>
-              <label class="calc-item"><span><input type="checkbox" value="5"><span class="calc-name">pH</span></span><span class="calc-price">RM 5</span></label>
-            </div>
+          <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Water Absorption</span></span><span class="calc-price">RM 50</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Particle Size Analysis</span></span><span class="calc-price">RM 50</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Effective Size / Uniformity Coefficient</span></span><span class="calc-price">RM 50</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Water Soluble Content</span></span><span class="calc-price">RM 50</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Sieve Test</span></span><span class="calc-price">RM 50</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="30"><span class="calc-name">LOI pada 900°C</span></span><span class="calc-price">RM 30</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Organic Matter</span></span><span class="calc-price">RM 50</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Acid Solubility</span></span><span class="calc-price">RM 50</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Clay, Silt and Dust</span></span><span class="calc-price">RM 50</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="50"><span class="calc-name">Total Sulphur as SO3/SO4</span></span><span class="calc-price">RM 50</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="15"><span class="calc-name">Moisture 105°C</span></span><span class="calc-price">RM 15</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="20"><span class="calc-name">Specific Gravity (500 g)</span></span><span class="calc-price">RM 20</span></label>
+          <label class="calc-item"><span><input type="checkbox" value="5"><span class="calc-name">pH</span></span><span class="calc-price">RM 5</span></label>
+        </div>
 
-            <div class="total-box" aria-live="polite">Jumlah: RM <span id="total">0.00</span></div>
+        <div class="total-box" aria-live="polite">Jumlah: RM <span id="total">0.00</span></div>
 
-            <div class="action-bar">
-              <a href="#" class="btn btn-primary" id="homeBtn">Utama</a>
-              <button type="button" id="clearForm" class="btn btn-ghost">Kosongkan</button>
-            </div>
-          </form>
-        </article>
+        <div class="action-bar">
+          <a href="#" class="btn btn-primary" id="homeBtn">Utama</a>
+          <button type="button" id="clearForm" class="btn btn-ghost">Kosongkan</button>
+        </div>
+      </form>
+    </article>
 
-        <!-- I- PAYMENT -->
-        <article id="contact">
-          <h2 class="major">I- PAYMENT</h2>
-          <p>Untuk bayaran secara dalam talian, sila gunakan portal rasmi iPayment Perbendaharaan Malaysia.</p>
-          <p>
-            <a class="btn btn-primary" href="https://ipayment.anm.gov.my/" target="_blank" rel="noopener">
-              Buka I- PAYMENT
-            </a>
-          </p>
-          <p class="calc-hint">Simpan bukti pembayaran. Resit portal mungkin diperlukan semasa pengambilan laporan.</p>
-        </article>
-      </div>
+    <article id="contact">
+      <h2 class="major">I- PAYMENT</h2>
+      <p>Untuk bayaran secara dalam talian, sila gunakan portal rasmi iPayment Perbendaharaan Malaysia.</p>
+      <p>
+        <a class="btn btn-primary" href="https://ipayment.anm.gov.my/" target="_blank" rel="noopener">
+          Buka I- PAYMENT
+        </a>
+      </p>
+      <p class="calc-hint">Simpan bukti pembayaran. Resit portal mungkin diperlukan semasa pengambilan laporan.</p>
+    </article>
+  </div>
 
-      <footer id="footer">
-        <p class="copyright">
-          <a href="mailto:makmalbptipoh@gmail.com">makmalbptipoh@gmail.com</a>
-        </p>
-      </footer>
-    </div>
+  <footer id="footer">
+    <p class="copyright">
+      <a href="mailto:makmalbptipoh@gmail.com">makmalbptipoh@gmail.com</a>
+    </p>
+  </footer>
+</div>
 
-    <div id="bg"></div>
+<div id="bg"></div>
 
-    <!-- Skrip asal tema -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
 
-    <!-- Kalkulator ES5 (serasi telefon) -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var form = document.getElementById('calcForm');
-        if (!form) return;
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('calcForm');
+    if (!form) return;
 
-        var checkboxes = form.querySelectorAll('input[type="checkbox"]');
-        var totalEl = document.getElementById('total');
-        var sampleInput = document.getElementById('sampleCount');
-        var clearBtn = document.getElementById('clearForm');
-        var homeBtn  = document.getElementById('homeBtn');
+    var checkboxes = form.querySelectorAll('input[type="checkbox"]');
+    var totalEl = document.getElementById('total');
+    var sampleInput = document.getElementById('sampleCount');
+    var clearBtn = document.getElementById('clearForm');
+    var homeBtn  = document.getElementById('homeBtn');
 
-        function recalc() {
-          var total = 0;
-          for (var i = 0; i < checkboxes.length; i++) {
-            var c = checkboxes[i];
-            if (c.checked) total += parseFloat(c.value) || 0;
-          }
-          var samples = parseInt(sampleInput.value, 10);
-          if (isNaN(samples) || samples < 1) samples = 1;
-          sampleInput.value = samples;
-          totalEl.textContent = (total * samples).toFixed(2);
-        }
+    function recalc() {
+      var total = 0;
+      for (var i = 0; i < checkboxes.length; i++) {
+        var c = checkboxes[i];
+        if (c.checked) total += parseFloat(c.value) || 0;
+      }
+      var samples = parseInt(sampleInput.value, 10);
+      if (isNaN(samples) || samples < 1) samples = 1;
+      sampleInput.value = samples;
+      totalEl.textContent = (total * samples).toFixed(2);
+    }
 
+    for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].addEventListener('change', recalc, false);
+    }
+
+    if (sampleInput) {
+      sampleInput.addEventListener('input', recalc, false);
+      sampleInput.addEventListener('change', recalc, false);
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function () {
         for (var i = 0; i < checkboxes.length; i++) {
-          checkboxes[i].addEventListener('change', recalc, false);
+          checkboxes[i].checked = false;
         }
-
-        if (sampleInput) {
-          sampleInput.addEventListener('input', recalc, false);
-          sampleInput.addEventListener('change', recalc, false);
-        }
-
-        if (clearBtn) {
-          clearBtn.addEventListener('click', function () {
-            for (var i = 0; i < checkboxes.length; i++) {
-              checkboxes[i].checked = false;
-            }
-            sampleInput.value = 1;
-            recalc();
-            form.scrollTop = 0;
-          }, false);
-        }
-
-        if (homeBtn) {
-          homeBtn.addEventListener('click', function (e) {
-            if (e && e.preventDefault) e.preventDefault();
-            window.location.hash = '';
-            window.scrollTo(0, 0);
-          }, false);
-        }
-
+        sampleInput.value = 1;
         recalc();
-      });
-    </script>
+        form.scrollTop = 0;
+      }, false);
+    }
+
+    if (homeBtn) {
+      homeBtn.addEventListener('click', function (e) {
+        if (e && e.preventDefault) e.preventDefault();
+        window.location.hash = '';
+        window.scrollTo(0, 0);
+      }, false);
+    }
+
+    recalc();
+  });
+</script>
+```
+
   </body>
 </html>
+::contentReference[oaicite:0]{index=0}
