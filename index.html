@@ -30,7 +30,7 @@
 <noscript><link rel="stylesheet" href="assets/css/noscript.css?v=6" /></noscript>
 
 <style>
-  /* ========== BACKGROUND GAMBAR UNTUK #bg ========== */
+  /* BACKGROUND IMAGE */
 
   #bg{
     position:fixed;
@@ -52,68 +52,59 @@
     height:100%;
   }
 
+  /* buang overlay gelap */
   #bg:before{
-    transition:background-color 2.5s ease-in-out;
-    transition-delay:.75s;
-    background-image:linear-gradient(
-      to top,
-      rgba(19,21,25,.8),
-      rgba(19,21,25,.55)
-    );
-    background-size:auto;
-    background-position:center;
-    background-repeat:no-repeat;
-    z-index:2;
+    background:none !important;
   }
 
- #bg:after{
-transform:scale(1.125);
-transition:transform .325s ease-in-out, filter .325s ease-in-out;
-background-image:url("img/bp-lab.jpg");
-background-position:center;
-background-size:cover;
-background-repeat:no-repeat;
-z-index:1;
-}
+  #bg:after{
+    background-image:url("img/bp-lab.jpg") !important;
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    transform:none;
+    filter:none;
+    z-index:1;
+  }
+
   body.is-article-visible #bg:after{
-    transform:scale(1.0825);
+    transform:none;
     filter:blur(.2rem);
   }
 
   body.is-preload #bg:before{
     background-color:#000;
   }
-  /* Paksa tunjuk background image jelas, buang overlay gelap */
-#bg:before{
-background: none !important;
-}
 
-#bg:after{
-background-image: url("img/bp-lab.jpg") !important;
-background-position: center;
-background-size: cover;
-background-repeat: no-repeat;
-transform: none;
-filter: none;
-}
-
-  /* =================== OVERRIDES / GAYA TAMBAHAN =================== */
+  /* OVERRIDES / GAYA TAMBAHAN */
 
   #header .logo{
-    width:5.5rem; height:5.5rem; line-height:5.5rem;
-    border:1px solid #fff; border-radius:100%;
+    width:5.5rem;
+    height:5.5rem;
+    line-height:5.5rem;
+    border:1px solid #fff;
+    border-radius:100%;
   }
 
   .calc-wrap{margin-top:.5rem}
   .calc-hint{opacity:.8;margin:.25rem 0 .75rem}
   .calc-list{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:.5rem;max-height:55vh;overflow:auto;padding-right:4px
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:.5rem;
+    max-height:55vh;
+    overflow:auto;
+    padding-right:4px;
   }
   .calc-item{
-    display:flex;align-items:center;justify-content:space-between;gap:.5rem;
-    padding:.55rem .75rem;border:1px solid rgba(255,255,255,.05);
-    border-radius:8px;background:rgba(255,255,255,.03)
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:.5rem;
+    padding:.55rem .75rem;
+    border:1px solid rgba(255,255,255,.05);
+    border-radius:8px;
+    background:rgba(255,255,255,.03);
   }
   .calc-item input{margin-right:.5rem}
   .calc-name{flex:1;min-width:0}
@@ -122,9 +113,18 @@ filter: none;
   .sample-box label{margin-right:.25rem}
 
   #work .input-compact{
-    width:50px;height:25px;line-height:25px;text-align:center;padding:0 .5rem;
-    background:#111827;color:#fff;border:1px solid #374151;border-radius:6px;
-    font-weight:700;letter-spacing:.02em;caret-color:#fff
+    width:50px;
+    height:25px;
+    line-height:25px;
+    text-align:center;
+    padding:0 .5rem;
+    background:#111827;
+    color:#fff;
+    border:1px solid #374151;
+    border-radius:6px;
+    font-weight:700;
+    letter-spacing:.02em;
+    caret-color:#fff;
   }
   #work .input-compact::placeholder{color:rgba(255,255,255,.6)}
   #work .input-compact:focus{outline:none;box-shadow:0 0 0 2px rgba(59,130,246,.55)}
@@ -132,7 +132,14 @@ filter: none;
   .total-box{margin:.25rem 0;font-weight:700}
   .action-bar{display:flex;gap:.5rem;justify-content:flex-end;margin-top:.5rem}
 
-  .btn{display:inline-block;padding:.6rem 1rem;border-radius:8px;text-decoration:none;cursor:pointer;border:0}
+  .btn{
+    display:inline-block;
+    padding:.6rem 1rem;
+    border-radius:8px;
+    text-decoration:none;
+    cursor:pointer;
+    border:0;
+  }
   .btn-primary{background:#1e88e5;color:#fff}
   .btn-primary:hover{background:#1565c0}
   .btn-ghost{background:transparent;color:inherit;border:1px solid rgba(255,255,255,.35)}
@@ -148,8 +155,12 @@ filter: none;
 
   #work .sample-box{align-items:center;gap:.5rem}
   #work .sample-box label{
-    margin:0 .5rem 0 0;display:inline-flex;align-items:center;
-    height:25px;line-height:25px;white-space:nowrap;
+    margin:0 .5rem 0 0;
+    display:inline-flex;
+    align-items:center;
+    height:25px;
+    line-height:25px;
+    white-space:nowrap;
   }
 
   #work .calc-item .calc-name,
@@ -160,9 +171,15 @@ filter: none;
   }
 
   #clearForm{
-    background:#ef4444;border:1px solid #b91c1c;color:#fff;
-    display:inline-flex;align-items:center;justify-content:center;
-    text-align:center;min-width:140px;font-weight:700;
+    background:#ef4444;
+    border:1px solid #b91c1c;
+    color:#fff;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    min-width:140px;
+    font-weight:700;
   }
   #clearForm:hover{background:#dc2626}
   #clearForm:focus{outline:2px solid rgba(239,68,68,.55);outline-offset:2px}
@@ -399,5 +416,3 @@ filter: none;
   </body>
 </html>
 ::contentReference[oaicite:0]{index=0}
-
-
