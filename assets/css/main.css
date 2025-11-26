@@ -412,6 +412,7 @@ width:100%;
 height:100vh;
 z-index:1;
 }
+
 #bg:before,
 #bg:after{
 content:'';
@@ -422,6 +423,8 @@ left:0;
 width:100%;
 height:100%;
 }
+
+/* overlay gelap atas gambar */
 #bg:before{
 -moz-transition:background-color 2.5s ease-in-out;
 -webkit-transition:background-color 2.5s ease-in-out;
@@ -433,7 +436,7 @@ transition:background-color 2.5s ease-in-out;
 transition-delay:.75s;
 background-image: linear-gradient(
 to top,
-rgba(19,21,25,.75),
+rgba(19,21,25,.8),
 rgba(19,21,25,.55)
 );
 background-size:auto;
@@ -441,6 +444,8 @@ background-position:center;
 background-repeat:no-repeat;
 z-index:2;
 }
+
+/* gambar background dari folder img/ */
 #bg:after{
 -moz-transform:scale(1.125);
 -webkit-transform:scale(1.125);
@@ -450,12 +455,13 @@ transform:scale(1.125);
 -webkit-transition:-webkit-transform .325s ease-in-out, -webkit-filter .325s ease-in-out;
 -ms-transition:-ms-transform .325s ease-in-out, -ms-filter .325s ease-in-out;
 transition: transform .325s ease-in-out, filter .325s ease-in-out;
-background-image:url("../../img/romain-virtuel-R0R4ZZK3V_M-unsplash.jpg");
+background-image:url("../../img/bg-lab.jpg");
 background-position:center;
 background-size:cover;
 background-repeat:no-repeat;
 z-index:1;
 }
+
 body.is-article-visible #bg:after{
 -moz-transform:scale(1.0825);
 -webkit-transform:scale(1.0825);
@@ -466,6 +472,7 @@ transform:scale(1.0825);
 -ms-filter:blur(.2rem);
 filter:blur(.2rem);
 }
+
 body.is-preload #bg:before
 
 /* Wrapper */
