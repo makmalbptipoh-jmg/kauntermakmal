@@ -2,10 +2,11 @@
 
 <html lang="ms">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>Kaunter Makmal JMG Ipoh</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Sistem pendaftaran dan maklumat sampel pelanggan Makmal JMG Ipoh." />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="Sistem pendaftaran dan maklumat sampel pelanggan Makmal JMG Ipoh.">
 
   <style>
     * {
@@ -16,13 +17,13 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: #f9fafb;
       background: #000;
+      color: #f9fafb;
       min-height: 100vh;
     }
 
-    /* Background gambar */
-    #bg {
+    /* Background batu */
+    .bg {
       position: fixed;
       inset: 0;
       background-image: url("img/bp-lab.jpg");
@@ -38,7 +39,6 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      color: #f9fafb;
     }
 
     header {
@@ -106,16 +106,16 @@
     }
 
     section {
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(15, 23, 42, 0.9);
       border-radius: 16px;
       padding: 1.8rem 1.6rem;
       margin-bottom: 1.5rem;
-      border: 1px solid rgba(148, 163, 184, 0.4);
+      border: 1px solid rgba(148, 163, 184, 0.5);
       backdrop-filter: blur(6px);
     }
 
     section h2 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       margin-bottom: 1rem;
@@ -235,13 +235,6 @@
       margin-bottom: 0.7rem;
     }
 
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 0.6rem;
-    }
-
     footer {
       text-align: center;
       padding: 0.75rem 1.5rem 1.4rem;
@@ -273,9 +266,8 @@
   </style>
 
 </head>
-
 <body>
-  <div id="bg"></div>
+  <div class="bg"></div>
 
   <div class="page">
     <header>
@@ -297,24 +289,19 @@
     <h2>Intro</h2>
     <p><strong>Makmal JMG Ipoh</strong> ialah fasiliti analisis di bawah Bahagian Perkhidmatan Teknikal (BPT) yang menyokong penerokaan sumber mineral, pengurusan geologi, serta keperluan industri dan penyelidikan. Kami menjalankan analisis geokimia dan ujian fizikal ke atas mineral, batuan, tanah, sedimen dan air untuk kawalan kualiti, pematuhan spesifikasi, penilaian sumber dan pembangunan produk.</p>
 
-    <br />
+    <br>
 
     <h3>Skop Perkhidmatan</h3>
     <ul>
-      <li><strong>Analisis geokimia</strong>: unsur major (SiO2, Al2O3, Fe2O3, CaO, MgO, Na2O, K2O, TiO2), minor atau jejak (Zn, Cu, Pb, Cd, As, Se, Hg, Sb, Mo, W, Be, NiO, CoO, V2O5, ZrO2, Cr2O3) dan parameter khusus (U atau Th) mengikut keperluan.</li>
-      <li><strong>Ujian fizikal</strong>: Water Absorption, Particle Size Analysis, Effective Size atau Uniformity Coefficient, Water Soluble Content, Sieve Test, LOI, Organic Matter, Acid Solubility, Clay atau Silt atau Dust, Total Sulphur (SO3 atau SO4), Moisture 105°C, Specific Gravity dan pH.</li>
+      <li><strong>Analisis geokimia</strong>: unsur major, minor, jejak dan parameter khusus mengikut keperluan.</li>
+      <li><strong>Ujian fizikal</strong>: Water Absorption, Particle Size Analysis, Effective Size atau Uniformity Coefficient, Water Soluble Content, Sieve Test, LOI, Organic Matter, Acid Solubility, Clay atau Silt atau Dust, Total Sulphur, Moisture 105°C, Specific Gravity dan pH.</li>
       <li><strong>Khidmat teknikal</strong>: nasihat kaedah, keperluan persediaan sampel dan interpretasi asas keputusan.</li>
     </ul>
-
-    <h3>Jaminan Kualiti</h3>
-    <p>Sistem pengurusan kualiti berasaskan ISO atau IEC 17025:2017 dengan jejak ukur yang terurus, penggunaan bahan piawai atau kawalan dalaman dan semakan teknikal sebelum laporan dikeluarkan.</p>
-
-    <br />
 
     <h3>Aliran Kerja</h3>
     <p>Pendaftaran → Persediaan sampel → Analisis → Kawalan kualiti → Laporan dan serahan kepada pelanggan.</p>
 
-    <br />
+    <br>
 
     <h3>Penghantaran Sampel</h3>
     <p>Pastikan disertakan nama atau jenis sampel, matriks, senarai ujian, kuantiti atau berat, maklumat keselamatan jika ada dan rujukan projek.</p>
@@ -324,7 +311,7 @@
   <section id="analisa">
     <h2>Permohonan Analisa</h2>
     <p>Untuk mempercepatkan urusan pendaftaran ujian, sila isi borang dalam talian di pautan berikut. Borang ini membantu kami merekod maklumat sampel dan ujian diminta sebelum penyerahan fizikal di kaunter.</p>
-    <br />
+    <br>
     <a class="btn btn-primary" href="https://forms.gle/s5gRpcgkTyNcgxu56" target="_blank" rel="noopener">
       Isi Borang Permohonan Analisa
     </a>
@@ -337,7 +324,7 @@
     <form id="calcForm" autocomplete="off">
       <div class="row-inline">
         <label for="sampleCount"><strong>Bilangan sampel</strong></label>
-        <input type="number" id="sampleCount" class="input-compact" value="1" min="1" step="1" inputmode="numeric" />
+        <input type="number" id="sampleCount" class="input-compact" value="1" min="1" step="1">
       </div>
 
       <div class="calc-list">
@@ -393,20 +380,18 @@
 
       <div class="total-box">Jumlah: RM <span id="total">0.00</span></div>
 
-      <div class="actions">
-        <button type="button" class="btn btn-outline" id="resetBtn">Kosongkan</button>
-      </div>
+      <button type="button" class="btn btn-outline" id="resetBtn">Kosongkan</button>
     </form>
   </section>
 
   <section id="payment">
     <h2>I-Payment</h2>
     <p>Untuk bayaran secara dalam talian, sila gunakan portal rasmi iPayment Perbendaharaan Malaysia.</p>
-    <br />
+    <br>
     <a class="btn btn-primary" href="https://ipayment.anm.gov.my/" target="_blank" rel="noopener">
       Buka I-Payment
     </a>
-    <br /><br />
+    <br><br>
     <p>Simpan bukti pembayaran. Resit portal mungkin diperlukan semasa pengambilan laporan.</p>
   </section>
 </main>
