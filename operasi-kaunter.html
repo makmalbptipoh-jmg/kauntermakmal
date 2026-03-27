@@ -13,21 +13,12 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['Manrope', 'sans-serif']
-          },
+          fontFamily: { sans: ['Manrope', 'sans-serif'] },
           colors: {
             brand: {
-              50: '#f4f8fb',
-              100: '#eaf3f8',
-              200: '#cfe3ee',
-              300: '#9bc8dd',
-              400: '#66aac8',
-              500: '#3689af',
-              600: '#226d92',
-              700: '#195675',
-              800: '#15354c',
-              900: '#0a1627'
+              50: '#f4f8fb', 100: '#eaf3f8', 200: '#cfe3ee', 300: '#9bc8dd',
+              400: '#66aac8', 500: '#3689af', 600: '#226d92', 700: '#195675',
+              800: '#15354c', 900: '#0a1627'
             },
             accent: '#7cd3ea',
             ink: '#19202a',
@@ -42,9 +33,7 @@
     }
   </script>
   <style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
-    }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24; }
     .page-pattern {
       background-image: radial-gradient(circle at 1px 1px, rgba(21,53,76,0.06) 1px, transparent 0);
       background-size: 24px 24px;
@@ -110,12 +99,16 @@
               <span class="material-symbols-outlined text-[20px]">arrow_back</span>
               Dashboard
             </button>
+            <button id="resetLogButton" class="inline-flex items-center gap-2 rounded-2xl bg-red-50 px-4 py-2 text-sm font-bold text-red-600 transition hover:bg-red-100">
+              <span class="material-symbols-outlined text-[20px]">restart_alt</span>
+              Reset Log
+            </button>
             <div class="hidden items-center gap-3 rounded-2xl border border-slate-200 bg-white px-3 py-2 shadow-sm sm:flex">
               <div class="text-right">
                 <p id="userDisplay" class="text-sm font-extrabold text-slate-800">Pengguna</p>
-                <p class="text-xs font-medium text-slate-500">Staf Berdaftar</p>
+                <p id="userRole" class="text-xs font-medium text-slate-500">Staf Berdaftar</p>
               </div>
-              <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-900 text-sm font-extrabold uppercase text-white">BP</div>
+              <div id="userInitials" class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-900 text-sm font-extrabold uppercase text-white">BP</div>
             </div>
           </div>
         </div>
@@ -203,7 +196,6 @@
                 Hari Ini
               </span>
             </div>
-
             <div id="activeStaffGrid" class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"></div>
           </section>
 
@@ -226,7 +218,6 @@
                     class="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 focus:border-brand-300 focus:ring-brand-200">
                     <option value="Semua">Semua Status</option>
                     <option value="Sedang Bertugas">Sedang Bertugas</option>
-                    <option value="Lewat">Lewat</option>
                     <option value="Belum Login">Belum Login</option>
                     <option value="Sudah Logout">Sudah Logout</option>
                   </select>
@@ -260,88 +251,71 @@
   <div id="sidebarBackdrop" class="fixed inset-0 z-30 hidden bg-slate-950/30 lg:hidden"></div>
 
   <script>
-    const staffDutyList = [
-      {
-        bil: "01",
-        name: "Admin",
-        userId: "ADMIN001",
-        role: "Pentadbir Sistem",
-        initials: "AD",
-        loginTime: "08:00 AM",
-        logoutTime: "-",
-        status: "Sedang Bertugas",
-        kaunter: "Kaunter 01",
-        note: "Akses penuh sistem"
-      },
-      {
-        bil: "02",
-        name: "Abdul Rani",
-        userId: "BPT002",
-        role: "Petugas Kaunter",
-        initials: "AR",
-        loginTime: "08:05 AM",
-        logoutTime: "-",
-        status: "Sedang Bertugas",
-        kaunter: "Kaunter 02",
-        note: "Bertugas kaunter pagi"
-      },
-      {
-        bil: "03",
-        name: "Fahimah Zaidah",
-        userId: "BPT003",
-        role: "Petugas Kaunter",
-        initials: "FZ",
-        loginTime: "08:10 AM",
-        logoutTime: "-",
-        status: "Sedang Bertugas",
-        kaunter: "Kaunter 03",
-        note: "Penerimaan sampel"
-      },
-      {
-        bil: "04",
-        name: "Wan Edralina",
-        userId: "BPT004",
-        role: "Petugas Kaunter",
-        initials: "WE",
-        loginTime: "-",
-        logoutTime: "-",
-        status: "Belum Login",
-        kaunter: "Kaunter 04",
-        note: "Belum mula syif"
-      },
-      {
-        bil: "05",
-        name: "Saeda",
-        userId: "BPT005",
-        role: "Petugas Kaunter",
-        initials: "SA",
-        loginTime: "08:40 AM",
-        logoutTime: "-",
-        status: "Lewat",
-        kaunter: "Kaunter 02",
-        note: "Perlu semakan admin"
-      },
-      {
-        bil: "06",
-        name: "Suraya",
-        userId: "BPT006",
-        role: "Petugas Kaunter",
-        initials: "SU",
-        loginTime: "07:55 AM",
-        logoutTime: "12:30 PM",
-        status: "Sudah Logout",
-        kaunter: "Kaunter 01",
-        note: "Tamat syif pagi"
-      }
+    const DEFAULT_DUTY_LOG = [
+      { bil: "01", name: "Admin", userId: "ADMIN001", role: "Pentadbir Sistem", initials: "AD", loginTime: "-", logoutTime: "-", status: "Belum Login", kaunter: "Kaunter 01", note: "Menunggu login" },
+      { bil: "02", name: "Abdul Rani", userId: "BPT002", role: "Petugas Kaunter", initials: "AR", loginTime: "-", logoutTime: "-", status: "Belum Login", kaunter: "Kaunter 02", note: "Menunggu login" },
+      { bil: "03", name: "Fahimah Zaidah", userId: "BPT003", role: "Petugas Kaunter", initials: "FZ", loginTime: "-", logoutTime: "-", status: "Belum Login", kaunter: "Kaunter 03", note: "Menunggu login" },
+      { bil: "04", name: "Wan Edralina", userId: "BPT004", role: "Petugas Kaunter", initials: "WE", loginTime: "-", logoutTime: "-", status: "Belum Login", kaunter: "Kaunter 04", note: "Menunggu login" },
+      { bil: "05", name: "Saeda", userId: "BPT005", role: "Petugas Kaunter", initials: "SA", loginTime: "-", logoutTime: "-", status: "Belum Login", kaunter: "Kaunter 02", note: "Menunggu login" },
+      { bil: "06", name: "Suraya", userId: "BPT006", role: "Petugas Kaunter", initials: "SU", loginTime: "-", logoutTime: "-", status: "Belum Login", kaunter: "Kaunter 01", note: "Menunggu login" }
     ];
 
+    function formatTime(date = new Date()) {
+      return date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
+    }
+
+    function getTodayKey(date = new Date()) {
+      return date.toISOString().slice(0, 10);
+    }
+
+    function getDutyStorageKey() {
+      return `bptDutyLog_${getTodayKey()}`;
+    }
+
+    function ensureDailyDutyLog() {
+      const key = getDutyStorageKey();
+      const existing = localStorage.getItem(key);
+      if (!existing) {
+        localStorage.setItem(key, JSON.stringify(DEFAULT_DUTY_LOG));
+      }
+    }
+
+    function getDailyDutyLog() {
+      ensureDailyDutyLog();
+      return JSON.parse(localStorage.getItem(getDutyStorageKey()) || "[]");
+    }
+
+    function saveDailyDutyLog(data) {
+      localStorage.setItem(getDutyStorageKey(), JSON.stringify(data));
+    }
+
+    function recordLogoutForCurrentUser() {
+      const currentUserId = localStorage.getItem("bptPortalUserId");
+      if (!currentUserId) return;
+
+      const logs = getDailyDutyLog();
+      const index = logs.findIndex(item => item.userId === currentUserId);
+
+      if (index !== -1) {
+        logs[index].logoutTime = formatTime(new Date());
+        logs[index].status = "Sudah Logout";
+        logs[index].note = "Log keluar berjaya";
+        saveDailyDutyLog(logs);
+      }
+    }
+
     const userDisplay = document.getElementById('userDisplay');
+    const userRole = document.getElementById('userRole');
+    const userInitials = document.getElementById('userInitials');
     userDisplay.textContent = localStorage.getItem('bptPortalUser') || 'Staf Makmal';
+    userRole.textContent = localStorage.getItem('bptPortalRole') || 'Staf Berdaftar';
+    userInitials.textContent = localStorage.getItem('bptPortalInitials') || 'BP';
 
     const menuButton = document.getElementById('menuButton');
     const sidebar = document.getElementById('sidebar');
     const sidebarBackdrop = document.getElementById('sidebarBackdrop');
     const logoutButton = document.getElementById('logoutButton');
+    const resetLogButton = document.getElementById('resetLogButton');
     const searchInput = document.getElementById('searchInput');
     const statusFilter = document.getElementById('statusFilter');
 
@@ -359,53 +333,35 @@
     sidebarBackdrop.addEventListener('click', closeSidebar);
 
     logoutButton.addEventListener('click', function () {
+      recordLogoutForCurrentUser();
       localStorage.removeItem('bptPortalUser');
+      localStorage.removeItem('bptPortalUserId');
+      localStorage.removeItem('bptPortalRole');
+      localStorage.removeItem('bptPortalInitials');
+      localStorage.removeItem('bptPortalKaunter');
       localStorage.removeItem('bptPortalRemember');
       window.location.href = 'index.html';
     });
 
+    resetLogButton.addEventListener('click', function () {
+      localStorage.setItem(getDutyStorageKey(), JSON.stringify(DEFAULT_DUTY_LOG));
+      renderAll();
+      alert('Log harian telah direset.');
+    });
+
     function getStatusBadge(status) {
       if (status === "Sedang Bertugas") {
-        return `
-          <span class="inline-flex items-center gap-1.5 rounded-full border border-green-100 bg-green-50 px-2.5 py-1 text-[10px] font-bold uppercase text-green-700">
-            <span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
-            ${status}
-          </span>
-        `;
+        return `<span class="inline-flex items-center gap-1.5 rounded-full border border-green-100 bg-green-50 px-2.5 py-1 text-[10px] font-bold uppercase text-green-700"><span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>${status}</span>`;
       }
-
       if (status === "Sudah Logout") {
-        return `
-          <span class="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-[10px] font-bold uppercase text-slate-600">
-            <span class="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
-            ${status}
-          </span>
-        `;
+        return `<span class="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-[10px] font-bold uppercase text-slate-600"><span class="h-1.5 w-1.5 rounded-full bg-slate-400"></span>${status}</span>`;
       }
-
-      if (status === "Lewat") {
-        return `
-          <span class="inline-flex items-center gap-1.5 rounded-full border border-red-200 bg-red-50 px-2.5 py-1 text-[10px] font-bold uppercase text-red-700">
-            <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
-            ${status}
-          </span>
-        `;
-      }
-
-      return `
-        <span class="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-bold uppercase text-slate-500">
-          <span class="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
-          ${status}
-        </span>
-      `;
+      return `<span class="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-bold uppercase text-slate-500"><span class="h-1.5 w-1.5 rounded-full bg-slate-400"></span>${status}</span>`;
     }
 
     function getCardStatusBadge(status) {
       if (status === "Sedang Bertugas") {
         return `<span class="rounded border border-green-200 bg-green-100 px-2 py-1 text-[10px] font-bold uppercase text-green-700">Aktif</span>`;
-      }
-      if (status === "Lewat") {
-        return `<span class="rounded border border-red-200 bg-red-100 px-2 py-1 text-[10px] font-bold uppercase text-red-700">Lewat</span>`;
       }
       if (status === "Sudah Logout") {
         return `<span class="rounded border border-slate-200 bg-slate-100 px-2 py-1 text-[10px] font-bold uppercase text-slate-600">Logout</span>`;
@@ -416,16 +372,15 @@
     function getFilteredStaff() {
       const searchValue = searchInput.value.trim().toLowerCase();
       const selectedStatus = statusFilter.value;
+      const logs = getDailyDutyLog();
 
-      return staffDutyList.filter(staff => {
+      return logs.filter(staff => {
         const matchSearch =
           staff.name.toLowerCase().includes(searchValue) ||
           staff.userId.toLowerCase().includes(searchValue);
 
         const matchStatus =
-          selectedStatus === 'Semua' || selectedStatus === 'Semua Status'
-            ? true
-            : staff.status === selectedStatus;
+          selectedStatus === 'Semua' ? true : staff.status === selectedStatus;
 
         return matchSearch && matchStatus;
       });
@@ -433,21 +388,16 @@
 
     function renderActiveStaffCards() {
       const activeGrid = document.getElementById("activeStaffGrid");
-      if (!activeGrid) return;
+      const logs = getDailyDutyLog();
+      const activeStaff = logs.filter(staff => staff.status === "Sedang Bertugas");
 
-      const activeStaff = staffDutyList.filter(
-        staff => staff.status === "Sedang Bertugas" || staff.status === "Lewat"
-      );
-
-      activeGrid.innerHTML = activeStaff.map(staff => `
+      activeGrid.innerHTML = activeStaff.length ? activeStaff.map(staff => `
         <div class="group relative overflow-hidden rounded-3xl bg-white p-5 shadow-card transition hover:-translate-y-1">
           <div class="absolute right-0 top-0 p-3">
-            <span class="flex h-2 w-2 rounded-full ${staff.status === 'Lewat' ? 'bg-red-500' : 'bg-green-500'}"></span>
+            <span class="flex h-2 w-2 rounded-full bg-green-500"></span>
           </div>
           <div class="mb-4 flex items-center gap-4">
-            <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-slate-100 font-extrabold text-brand-900">
-              ${staff.initials}
-            </div>
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-slate-100 font-extrabold text-brand-900">${staff.initials}</div>
             <div>
               <h4 class="leading-tight font-bold text-brand-900">${staff.name}</h4>
               <p class="text-xs font-medium text-slate-500">ID: ${staff.userId}</p>
@@ -463,33 +413,29 @@
             ${getCardStatusBadge(staff.status)}
           </div>
         </div>
-      `).join("");
+      `).join("") : `
+        <div class="col-span-full rounded-3xl border border-dashed border-slate-300 bg-white p-8 text-center text-sm font-semibold text-slate-400">
+          Tiada staf aktif buat masa ini.
+        </div>
+      `;
 
-      const activeCount = activeStaff.length;
-      const countText = document.getElementById("activeStaffCountText");
-      const countBox = document.getElementById("activeStaffCountBox");
-
-      if (countText) countText.textContent = `${activeCount} staf sedang bertugas`;
-      if (countBox) countBox.textContent = String(activeCount).padStart(2, "0");
+      document.getElementById("activeStaffCountText").textContent = `${activeStaff.length} staf sedang bertugas`;
+      document.getElementById("activeStaffCountBox").textContent = String(activeStaff.length).padStart(2, "0");
     }
 
     function renderDailyLogTable() {
       const tbody = document.getElementById("dailyLogBody");
-      if (!tbody) return;
-
       const filtered = getFilteredStaff();
       const now = new Date();
       const hari = now.toLocaleDateString("ms-MY", { weekday: "long" });
       const tarikh = now.toLocaleDateString("ms-MY");
 
-      tbody.innerHTML = filtered.map(staff => `
+      tbody.innerHTML = filtered.length ? filtered.map(staff => `
         <tr class="transition-colors hover:bg-slate-50">
           <td class="px-6 py-4 text-sm font-medium text-slate-500">${staff.bil}</td>
           <td class="px-6 py-4">
             <div class="flex items-center gap-3">
-              <div class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold text-brand-900">
-                ${staff.initials}
-              </div>
+              <div class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold text-brand-900">${staff.initials}</div>
               <span class="text-sm font-bold text-brand-900">${staff.name}</span>
             </div>
           </td>
@@ -507,17 +453,13 @@
             </button>
           </td>
         </tr>
-      `).join("");
-
-      if (filtered.length === 0) {
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="8" class="px-6 py-10 text-center text-sm font-semibold text-slate-400">
-              Tiada rekod dijumpai.
-            </td>
-          </tr>
-        `;
-      }
+      `).join("") : `
+        <tr>
+          <td colspan="8" class="px-6 py-10 text-center text-sm font-semibold text-slate-400">
+            Tiada rekod dijumpai.
+          </td>
+        </tr>
+      `;
     }
 
     function updateTodayBadge() {
@@ -525,53 +467,40 @@
       const todayFull = document.getElementById("todayFull");
       const now = new Date();
 
-      const badgeText = now.toLocaleDateString("ms-MY", {
-        weekday: "short",
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric"
+      todayBadge.textContent = now.toLocaleDateString("ms-MY", {
+        weekday: "short", day: "2-digit", month: "2-digit", year: "numeric"
       });
 
-      const fullText = now.toLocaleDateString("ms-MY", {
-        weekday: "long",
-        day: "2-digit",
-        month: "long",
-        year: "numeric"
+      todayFull.textContent = now.toLocaleDateString("ms-MY", {
+        weekday: "long", day: "2-digit", month: "long", year: "numeric"
       });
-
-      if (todayBadge) todayBadge.textContent = badgeText;
-      if (todayFull) todayFull.textContent = fullText;
     }
 
     function updateCurrentTime() {
-      const clock = document.getElementById("currentClock");
-      if (!clock) return;
-
-      const timeString = new Date().toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit"
-      });
-
-      clock.textContent = timeString;
+      document.getElementById("currentClock").textContent = formatTime(new Date());
     }
 
     function updateSummaryCounts() {
-      const lateCount = staffDutyList.filter(staff => staff.status === 'Lewat').length;
-      const logoutCount = staffDutyList.filter(staff => staff.status === 'Sudah Logout').length;
-
-      document.getElementById('lateCountBox').textContent = String(lateCount).padStart(2, '0');
+      const logs = getDailyDutyLog();
+      const logoutCount = logs.filter(staff => staff.status === 'Sudah Logout').length;
       document.getElementById('logoutCountBox').textContent = String(logoutCount).padStart(2, '0');
+      document.getElementById('lateCountBox').textContent = '00';
     }
 
-    searchInput.addEventListener('input', renderDailyLogTable);
-    statusFilter.addEventListener('change', renderDailyLogTable);
-
-    document.addEventListener("DOMContentLoaded", function () {
+    function renderAll() {
       renderActiveStaffCards();
       renderDailyLogTable();
       updateTodayBadge();
       updateCurrentTime();
       updateSummaryCounts();
+    }
+
+    searchInput.addEventListener('input', renderDailyLogTable);
+    statusFilter.addEventListener('change', renderDailyLogTable);
+
+    ensureDailyDutyLog();
+    document.addEventListener("DOMContentLoaded", function () {
+      renderAll();
       setInterval(updateCurrentTime, 1000);
     });
   </script>
