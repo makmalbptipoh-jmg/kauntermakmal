@@ -106,7 +106,7 @@
             <div class="hidden items-center gap-3 rounded-2xl border border-slate-200 bg-white px-3 py-2 shadow-sm sm:flex">
               <div class="text-right">
                 <p id="userDisplay" class="text-sm font-extrabold text-slate-800">Pengguna</p>
-                <p id="userRole" class="text-xs font-medium text-slate-500">Staf Berdaftar</p>
+                <p class="text-xs font-medium text-slate-500">Staf Berdaftar</p>
               </div>
               <div id="userInitials" class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-900 text-sm font-extrabold uppercase text-white">BP</div>
             </div>
@@ -156,13 +156,13 @@
 
             <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-card">
               <div class="mb-4 flex items-start justify-between">
-                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-amber-700">
-                  <span class="material-symbols-outlined">schedule</span>
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-700">
+                  <span class="material-symbols-outlined">login</span>
                 </div>
-                <span class="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Lewat</span>
+                <span class="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Belum Login</span>
               </div>
-              <p id="lateCountBox" class="text-3xl font-extrabold text-brand-900">00</p>
-              <p class="mt-1 text-sm font-semibold text-amber-700">Perlu Semakan</p>
+              <p id="notLoginCountBox" class="text-3xl font-extrabold text-brand-900">00</p>
+              <p class="mt-1 text-sm font-semibold text-slate-600">Menunggu Akses</p>
             </div>
 
             <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-card">
@@ -196,6 +196,7 @@
                 Hari Ini
               </span>
             </div>
+
             <div id="activeStaffGrid" class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"></div>
           </section>
 
@@ -305,10 +306,8 @@
     }
 
     const userDisplay = document.getElementById('userDisplay');
-    const userRole = document.getElementById('userRole');
     const userInitials = document.getElementById('userInitials');
     userDisplay.textContent = localStorage.getItem('bptPortalUser') || 'Staf Makmal';
-    userRole.textContent = localStorage.getItem('bptPortalRole') || 'Staf Berdaftar';
     userInitials.textContent = localStorage.getItem('bptPortalInitials') || 'BP';
 
     const menuButton = document.getElementById('menuButton');
@@ -483,8 +482,10 @@
     function updateSummaryCounts() {
       const logs = getDailyDutyLog();
       const logoutCount = logs.filter(staff => staff.status === 'Sudah Logout').length;
+      const notLoginCount = logs.filter(staff => staff.status === 'Belum Login').length;
+
       document.getElementById('logoutCountBox').textContent = String(logoutCount).padStart(2, '0');
-      document.getElementById('lateCountBox').textContent = '00';
+      document.getElementById('notLoginCountBox').textContent = String(notLoginCount).padStart(2, '0');
     }
 
     function renderAll() {
