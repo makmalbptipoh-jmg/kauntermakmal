@@ -59,6 +59,7 @@
             <input id="tandatangan" name="Tandatangan" />
           </div>
 
+          <!-- KEPADA: dropdown dari API -->
           <div class="col-6">
             <label for="kepadaSelect">Kepada</label>
             <select id="kepadaSelect" name="Kepada">
@@ -110,6 +111,7 @@ JALAN SULTAN AZLAN SHAH,
       </fieldset>
 
       <div class="right no-print">
+        <!-- BUTANG HOME -->
         <button type="button" class="secondary" id="btnHome">Home</button>
         <button type="button" class="secondary" onclick="downloadPDF()">Muat Turun PDF</button>
         <button type="button" onclick="window.print()">Cetak</button>
@@ -178,6 +180,7 @@ JALAN SULTAN AZLAN SHAH,
       const pageW = doc.internal.pageSize.getWidth();
       const margin = 40;
 
+      // Header
       doc.setFont('helvetica','bold'); doc.setFontSize(11);
       doc.text('ASAL', margin, 28);
       doc.setLineWidth(0.6); doc.line(margin, 32, margin+24, 32);
@@ -186,12 +189,14 @@ JALAN SULTAN AZLAN SHAH,
       doc.text('(Am 115—Pin. 11/80)', pageW - margin - 110, 18);
       doc.setFontSize(12); doc.text(`CIP ${data.No_Siri}`, pageW - margin - 120, 40);
 
+      // Penerima
       doc.setFont('helvetica','normal'); doc.setFontSize(10);
       doc.text(`Kepada: ${data.Kepada || ''}`, margin, 70);
       const instr = 'Sila sempurnakan bayaran untuk perkhidmatan yang tersebut di bawah dengan seberapa segera. Cek, Kiriman Wang, atau Wang Pos mestilah dipalang dan dibuat supaya dibayar kepada:';
       doc.text(doc.splitTextToSize(instr, pageW - margin*2), margin, 92);
       doc.text(`${data.BayarKepada || ''}`, margin, 112);
 
+      // Jadual
       const top = 140, left = margin, right = pageW - margin, height = 260, rowH = 24;
       const colW = [80, 110, 110, (right-left) - (80+110+110+70+40), 70, 40];
       doc.setDrawColor(0); doc.setLineWidth(0.6); doc.rect(left, top, right-left, height);
@@ -417,6 +422,7 @@ JALAN SULTAN AZLAN SHAH,
       }
     });
 
+    // Pintasan Alt+H untuk balik Home, sebab manusia suka tekan benda rawak.
     document.addEventListener('keydown', (e) => {
       if (e.altKey && (e.key === 'h' || e.key === 'H')) location.href = HOME_URL;
     });
