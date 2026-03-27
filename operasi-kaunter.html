@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operasi Kaunter | Perkhidmatan Makmal BPT, JMG</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              50: '#f4f8fb',
+              100: '#eaf3f8',
+              200: '#cfe3ee',
+              300: '#9bc8dd',
+              400: '#66aac8',
+              500: '#3689af',
+              600: '#226d92',
+              700: '#195675',
+              800: '#15354c',
+              900: '#0a1627'
+            },
+            accent: '#7cd3ea',
+            ink: '#19202a',
+            soft: '#f8fbfd'
+          },
+          boxShadow: {
+            soft: '0 20px 60px rgba(10, 22, 39, 0.10)',
+            card: '0 10px 30px rgba(10, 22, 39, 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+    .page-pattern {
+      background-image: radial-gradient(circle at 1px 1px, rgba(21,53,76,0.06) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+  </style>
+</head>
+<body class="page-pattern min-h-screen bg-soft font-sans text-ink selection:bg-accent/40">
+  <div class="min-h-screen lg:flex">
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 -translate-x-full border-r border-slate-200 bg-white transition-transform duration-300 lg:translate-x-0">
+      <div class="flex h-full flex-col">
+        <div class="border-b border-slate-200 p-6">
+          <div class="flex items-center gap-4 rounded-3xl bg-brand-900 p-5 text-white shadow-card">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-brand-900">
+              <span class="material-symbols-outlined text-[30px]">science</span>
+            </div>
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.22em] text-accent">Portal Dalaman Staf</p>
+              <h1 class="text-lg font-extrabold tracking-tight">Perkhidmatan Makmal BPT</h1>
+              <p class="text-xs text-slate-300">Sistem Makmal JMG</p>
+            </div>
+          </div>
+        </div>
+
+        <nav class="flex-1 space-y-1 px-4 py-6 text-sm font-semibold text-slate-600">
+          <a href="dashboard.html" class="flex items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-brand-50 hover:text-brand-800">
+            <span class="material-symbols-outlined">dashboard</span>
+            Dashboard
+          </a>
+          <a href="operasi-kaunter.html" class="flex items-center gap-3 rounded-2xl bg-brand-900 px-4 py-3 text-white shadow-card">
+            <span class="material-symbols-outlined">storefront</span>
+            Operasi Kaunter
+          </a>
+          <a href="cipb.html" class="flex items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-brand-50 hover:text-brand-800">
+            <span class="material-symbols-outlined">science</span>
+            CIP B
+          </a>
+        </nav>
+
+        <div class="border-t border-slate-200 p-4">
+          <button id="logoutButton" class="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold text-red-600 transition hover:bg-red-50">
+            <span class="material-symbols-outlined">logout</span>
+            Log Keluar
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex-1 lg:ml-72">
+      <header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 backdrop-blur">
+        <div class="flex items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+          <div class="flex items-center gap-3">
+            <button id="menuButton" class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 text-slate-600 lg:hidden">
+              <span class="material-symbols-outlined">menu</span>
+            </button>
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.22em] text-brand-700">Modul Operasi</p>
+              <h2 class="text-lg font-extrabold tracking-tight text-brand-900">Operasi Kaunter</h2>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button onclick="window.location.href='dashboard.html'" class="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 transition hover:bg-brand-50 hover:text-brand-800">
+              <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+              Dashboard
+            </button>
+            <div class="hidden items-center gap-3 rounded-2xl border border-slate-200 bg-white px-3 py-2 shadow-sm sm:flex">
+              <div class="text-right">
+                <p id="userDisplay" class="text-sm font-extrabold text-slate-800">Pengguna</p>
+                <p class="text-xs font-medium text-slate-500">Staf Berdaftar</p>
+              </div>
+              <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-900 text-sm font-extrabold uppercase text-white">BP</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="px-4 py-8 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+          <section class="mb-8 rounded-[28px] bg-brand-900 p-6 text-white shadow-soft md:p-8">
+            <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-accent">
+                  <span class="h-2 w-2 rounded-full bg-accent"></span>
+                  Rekod Harian
+                </div>
+                <h1 class="text-3xl font-extrabold tracking-tight lg:text-4xl">Operasi Kaunter</h1>
+                <p class="mt-3 max-w-3xl text-sm leading-7 text-slate-300">
+                  Rekod staf bertugas, log kehadiran harian dan pemantauan operasi kaunter makmal.
+                </p>
+              </div>
+
+              <div class="grid gap-3 sm:grid-cols-2 lg:w-[420px]">
+                <div class="rounded-2xl bg-white/10 p-4">
+                  <p class="text-xs font-bold uppercase tracking-[0.18em] text-accent">Hari Ini</p>
+                  <p id="todayFull" class="mt-2 text-sm font-extrabold text-white">-</p>
+                </div>
+                <div class="rounded-2xl bg-white/10 p-4">
+                  <p class="text-xs font-bold uppercase tracking-[0.18em] text-accent">Staf Aktif</p>
+                  <p id="activeStaffCountText" class="mt-2 text-sm font-extrabold text-white">0 staf sedang bertugas</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="mb-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-card">
+              <div class="mb-4 flex items-start justify-between">
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-700">
+                  <span class="material-symbols-outlined">groups</span>
+                </div>
+                <span class="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Staf Aktif</span>
+              </div>
+              <p id="activeStaffCountBox" class="text-3xl font-extrabold text-brand-900">00</p>
+              <p class="mt-1 text-sm font-semibold text-brand-700">Sedang Bertugas</p>
+            </div>
+
+            <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-card">
+              <div class="mb-4 flex items-start justify-between">
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-amber-700">
+                  <span class="material-symbols-outlined">schedule</span>
+                </div>
+                <span class="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Lewat</span>
+              </div>
+              <p id="lateCountBox" class="text-3xl font-extrabold text-brand-900">00</p>
+              <p class="mt-1 text-sm font-semibold text-amber-700">Perlu Semakan</p>
+            </div>
+
+            <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-card">
+              <div class="mb-4 flex items-start justify-between">
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-700">
+                  <span class="material-symbols-outlined">logout</span>
+                </div>
+                <span class="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Logout</span>
+              </div>
+              <p id="logoutCountBox" class="text-3xl font-extrabold text-brand-900">00</p>
+              <p class="mt-1 text-sm font-semibold text-slate-600">Syif Selesai</p>
+            </div>
+
+            <div class="rounded-3xl border border-brand-900 bg-brand-900 p-6 text-white shadow-soft">
+              <div class="mb-3 flex items-center gap-3">
+                <span class="material-symbols-outlined text-accent">monitoring</span>
+                <h3 class="text-sm font-extrabold uppercase tracking-[0.16em]">Masa Semasa</h3>
+              </div>
+              <p id="currentClock" class="text-3xl font-extrabold text-white">--:--</p>
+              <p class="mt-1 text-sm text-slate-300">Pemantauan masa nyata</p>
+            </div>
+          </section>
+
+          <section class="mb-10">
+            <div class="mb-5 flex items-center justify-between px-1">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-brand-700">group</span>
+                <h2 class="text-xl font-bold text-brand-900">Kakitangan Sedang Bertugas</h2>
+              </div>
+              <span id="todayBadge" class="rounded-full bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-brand-700">
+                Hari Ini
+              </span>
+            </div>
+
+            <div id="activeStaffGrid" class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"></div>
+          </section>
+
+          <section class="rounded-[28px] border border-slate-200 bg-white shadow-card">
+            <div class="border-b border-slate-200 p-6">
+              <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div>
+                  <h2 class="text-2xl font-extrabold tracking-tight text-brand-900">Log Kehadiran Harian</h2>
+                  <p class="mt-2 text-sm text-slate-500">Rekod kehadiran petugas kaunter untuk hari semasa.</p>
+                </div>
+
+                <div class="flex flex-col gap-3 sm:flex-row">
+                  <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input id="searchInput" type="text" placeholder="Cari nama staf atau ID pengguna"
+                      class="w-full rounded-2xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm font-medium text-slate-700 placeholder:text-slate-400 focus:border-brand-300 focus:ring-brand-200 sm:w-80">
+                  </div>
+
+                  <select id="statusFilter"
+                    class="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 focus:border-brand-300 focus:ring-brand-200">
+                    <option value="Semua">Semua Status</option>
+                    <option value="Sedang Bertugas">Sedang Bertugas</option>
+                    <option value="Lewat">Lewat</option>
+                    <option value="Belum Login">Belum Login</option>
+                    <option value="Sudah Logout">Sudah Logout</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-slate-200">
+                <thead class="bg-slate-50">
+                  <tr>
+                    <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-[0.16em] text-slate-500">Bil</th>
+                    <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-[0.16em] text-slate-500">Nama Staf</th>
+                    <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-[0.16em] text-slate-500">ID Pengguna</th>
+                    <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-[0.16em] text-slate-500">Hari / Tarikh</th>
+                    <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-[0.16em] text-slate-500">Masa Login</th>
+                    <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-[0.16em] text-slate-500">Masa Logout</th>
+                    <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-[0.16em] text-slate-500">Status</th>
+                    <th class="px-6 py-4 text-right text-xs font-extrabold uppercase tracking-[0.16em] text-slate-500">Catatan</th>
+                  </tr>
+                </thead>
+                <tbody id="dailyLogBody" class="divide-y divide-slate-200"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="sidebarBackdrop" class="fixed inset-0 z-30 hidden bg-slate-950/30 lg:hidden"></div>
+
+  <script>
+    const staffDutyList = [
+      {
+        bil: "01",
+        name: "Admin",
+        userId: "ADMIN001",
+        role: "Pentadbir Sistem",
+        initials: "AD",
+        loginTime: "08:00 AM",
+        logoutTime: "-",
+        status: "Sedang Bertugas",
+        kaunter: "Kaunter 01",
+        note: "Akses penuh sistem"
+      },
+      {
+        bil: "02",
+        name: "Abdul Rani",
+        userId: "BPT002",
+        role: "Petugas Kaunter",
+        initials: "AR",
+        loginTime: "08:05 AM",
+        logoutTime: "-",
+        status: "Sedang Bertugas",
+        kaunter: "Kaunter 02",
+        note: "Bertugas kaunter pagi"
+      },
+      {
+        bil: "03",
+        name: "Fahimah Zaidah",
+        userId: "BPT003",
+        role: "Petugas Kaunter",
+        initials: "FZ",
+        loginTime: "08:10 AM",
+        logoutTime: "-",
+        status: "Sedang Bertugas",
+        kaunter: "Kaunter 03",
+        note: "Penerimaan sampel"
+      },
+      {
+        bil: "04",
+        name: "Wan Edralina",
+        userId: "BPT004",
+        role: "Petugas Kaunter",
+        initials: "WE",
+        loginTime: "-",
+        logoutTime: "-",
+        status: "Belum Login",
+        kaunter: "Kaunter 04",
+        note: "Belum mula syif"
+      },
+      {
+        bil: "05",
+        name: "Saeda",
+        userId: "BPT005",
+        role: "Petugas Kaunter",
+        initials: "SA",
+        loginTime: "08:40 AM",
+        logoutTime: "-",
+        status: "Lewat",
+        kaunter: "Kaunter 02",
+        note: "Perlu semakan admin"
+      },
+      {
+        bil: "06",
+        name: "Suraya",
+        userId: "BPT006",
+        role: "Petugas Kaunter",
+        initials: "SU",
+        loginTime: "07:55 AM",
+        logoutTime: "12:30 PM",
+        status: "Sudah Logout",
+        kaunter: "Kaunter 01",
+        note: "Tamat syif pagi"
+      }
+    ];
+
+    const userDisplay = document.getElementById('userDisplay');
+    userDisplay.textContent = localStorage.getItem('bptPortalUser') || 'Staf Makmal';
+
+    const menuButton = document.getElementById('menuButton');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+    const logoutButton = document.getElementById('logoutButton');
+    const searchInput = document.getElementById('searchInput');
+    const statusFilter = document.getElementById('statusFilter');
+
+    function openSidebar() {
+      sidebar.classList.remove('-translate-x-full');
+      sidebarBackdrop.classList.remove('hidden');
+    }
+
+    function closeSidebar() {
+      sidebar.classList.add('-translate-x-full');
+      sidebarBackdrop.classList.add('hidden');
+    }
+
+    menuButton.addEventListener('click', openSidebar);
+    sidebarBackdrop.addEventListener('click', closeSidebar);
+
+    logoutButton.addEventListener('click', function () {
+      localStorage.removeItem('bptPortalUser');
+      localStorage.removeItem('bptPortalRemember');
+      window.location.href = 'index.html';
+    });
+
+    function getStatusBadge(status) {
+      if (status === "Sedang Bertugas") {
+        return `
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-green-100 bg-green-50 px-2.5 py-1 text-[10px] font-bold uppercase text-green-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+            ${status}
+          </span>
+        `;
+      }
+
+      if (status === "Sudah Logout") {
+        return `
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-[10px] font-bold uppercase text-slate-600">
+            <span class="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
+            ${status}
+          </span>
+        `;
+      }
+
+      if (status === "Lewat") {
+        return `
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-red-200 bg-red-50 px-2.5 py-1 text-[10px] font-bold uppercase text-red-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+            ${status}
+          </span>
+        `;
+      }
+
+      return `
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-bold uppercase text-slate-500">
+          <span class="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
+          ${status}
+        </span>
+      `;
+    }
+
+    function getCardStatusBadge(status) {
+      if (status === "Sedang Bertugas") {
+        return `<span class="rounded border border-green-200 bg-green-100 px-2 py-1 text-[10px] font-bold uppercase text-green-700">Aktif</span>`;
+      }
+      if (status === "Lewat") {
+        return `<span class="rounded border border-red-200 bg-red-100 px-2 py-1 text-[10px] font-bold uppercase text-red-700">Lewat</span>`;
+      }
+      if (status === "Sudah Logout") {
+        return `<span class="rounded border border-slate-200 bg-slate-100 px-2 py-1 text-[10px] font-bold uppercase text-slate-600">Logout</span>`;
+      }
+      return `<span class="rounded border border-slate-200 bg-slate-100 px-2 py-1 text-[10px] font-bold uppercase text-slate-500">Belum Login</span>`;
+    }
+
+    function getFilteredStaff() {
+      const searchValue = searchInput.value.trim().toLowerCase();
+      const selectedStatus = statusFilter.value;
+
+      return staffDutyList.filter(staff => {
+        const matchSearch =
+          staff.name.toLowerCase().includes(searchValue) ||
+          staff.userId.toLowerCase().includes(searchValue);
+
+        const matchStatus =
+          selectedStatus === 'Semua' || selectedStatus === 'Semua Status'
+            ? true
+            : staff.status === selectedStatus;
+
+        return matchSearch && matchStatus;
+      });
+    }
+
+    function renderActiveStaffCards() {
+      const activeGrid = document.getElementById("activeStaffGrid");
+      if (!activeGrid) return;
+
+      const activeStaff = staffDutyList.filter(
+        staff => staff.status === "Sedang Bertugas" || staff.status === "Lewat"
+      );
+
+      activeGrid.innerHTML = activeStaff.map(staff => `
+        <div class="group relative overflow-hidden rounded-3xl bg-white p-5 shadow-card transition hover:-translate-y-1">
+          <div class="absolute right-0 top-0 p-3">
+            <span class="flex h-2 w-2 rounded-full ${staff.status === 'Lewat' ? 'bg-red-500' : 'bg-green-500'}"></span>
+          </div>
+          <div class="mb-4 flex items-center gap-4">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200 bg-slate-100 font-extrabold text-brand-900">
+              ${staff.initials}
+            </div>
+            <div>
+              <h4 class="leading-tight font-bold text-brand-900">${staff.name}</h4>
+              <p class="text-xs font-medium text-slate-500">ID: ${staff.userId}</p>
+              <p class="text-[11px] text-slate-500">${staff.role}</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between rounded-2xl bg-slate-50 p-3">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">Masa Login</p>
+              <p class="text-sm font-bold text-brand-700">${staff.loginTime}</p>
+              <p class="mt-1 text-[11px] text-slate-500">${staff.kaunter}</p>
+            </div>
+            ${getCardStatusBadge(staff.status)}
+          </div>
+        </div>
+      `).join("");
+
+      const activeCount = activeStaff.length;
+      const countText = document.getElementById("activeStaffCountText");
+      const countBox = document.getElementById("activeStaffCountBox");
+
+      if (countText) countText.textContent = `${activeCount} staf sedang bertugas`;
+      if (countBox) countBox.textContent = String(activeCount).padStart(2, "0");
+    }
+
+    function renderDailyLogTable() {
+      const tbody = document.getElementById("dailyLogBody");
+      if (!tbody) return;
+
+      const filtered = getFilteredStaff();
+      const now = new Date();
+      const hari = now.toLocaleDateString("ms-MY", { weekday: "long" });
+      const tarikh = now.toLocaleDateString("ms-MY");
+
+      tbody.innerHTML = filtered.map(staff => `
+        <tr class="transition-colors hover:bg-slate-50">
+          <td class="px-6 py-4 text-sm font-medium text-slate-500">${staff.bil}</td>
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold text-brand-900">
+                ${staff.initials}
+              </div>
+              <span class="text-sm font-bold text-brand-900">${staff.name}</span>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-xs font-mono text-slate-500">${staff.userId}</td>
+          <td class="px-6 py-4">
+            <p class="text-xs font-bold text-brand-900">${hari}</p>
+            <p class="text-[10px] text-slate-500">${tarikh}</p>
+          </td>
+          <td class="px-6 py-4 text-sm font-bold text-brand-700">${staff.loginTime}</td>
+          <td class="px-6 py-4 text-sm font-bold text-slate-600">${staff.logoutTime}</td>
+          <td class="px-6 py-4">${getStatusBadge(staff.status)}</td>
+          <td class="px-6 py-4 text-right">
+            <button class="p-2 text-slate-500 transition-colors hover:text-brand-900" title="${staff.note}">
+              <span class="material-symbols-outlined text-lg">more_vert</span>
+            </button>
+          </td>
+        </tr>
+      `).join("");
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="px-6 py-10 text-center text-sm font-semibold text-slate-400">
+              Tiada rekod dijumpai.
+            </td>
+          </tr>
+        `;
+      }
+    }
+
+    function updateTodayBadge() {
+      const todayBadge = document.getElementById("todayBadge");
+      const todayFull = document.getElementById("todayFull");
+      const now = new Date();
+
+      const badgeText = now.toLocaleDateString("ms-MY", {
+        weekday: "short",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      });
+
+      const fullText = now.toLocaleDateString("ms-MY", {
+        weekday: "long",
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+      });
+
+      if (todayBadge) todayBadge.textContent = badgeText;
+      if (todayFull) todayFull.textContent = fullText;
+    }
+
+    function updateCurrentTime() {
+      const clock = document.getElementById("currentClock");
+      if (!clock) return;
+
+      const timeString = new Date().toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
+      clock.textContent = timeString;
+    }
+
+    function updateSummaryCounts() {
+      const lateCount = staffDutyList.filter(staff => staff.status === 'Lewat').length;
+      const logoutCount = staffDutyList.filter(staff => staff.status === 'Sudah Logout').length;
+
+      document.getElementById('lateCountBox').textContent = String(lateCount).padStart(2, '0');
+      document.getElementById('logoutCountBox').textContent = String(logoutCount).padStart(2, '0');
+    }
+
+    searchInput.addEventListener('input', renderDailyLogTable);
+    statusFilter.addEventListener('change', renderDailyLogTable);
+
+    document.addEventListener("DOMContentLoaded", function () {
+      renderActiveStaffCards();
+      renderDailyLogTable();
+      updateTodayBadge();
+      updateCurrentTime();
+      updateSummaryCounts();
+      setInterval(updateCurrentTime, 1000);
+    });
+  </script>
+</body>
+</html>
