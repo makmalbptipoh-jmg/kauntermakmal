@@ -3,227 +3,423 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CIP B - Makmal BPT</title>
-
+  <title>CIP B</title>
   <style>
-    :root{
-      --gap:12px;
-      --radius:10px;
-      --line:#e5e7eb;
-      --muted:#6b7280;
-      --brand:#0e7afe;
-    }
-
-    body{
-      font-family:system-ui,-apple-system,"Segoe UI",Roboto;
-      margin:0;
-      background:#f4f7fb;
-    }
-
-    /* 🔷 HEADER (baru tambah supaya sama dengan dashboard) */
-    .header{
-      background:#0f172a;
-      color:white;
-      padding:16px 20px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-
-    .header h2{
-      margin:0;
-      font-size:18px;
-    }
-
-    .btn-home{
-      background:#22c55e;
-      border:none;
-      padding:8px 14px;
-      border-radius:8px;
-      color:white;
-      cursor:pointer;
-      font-weight:600;
-    }
-
-    .wrap{
-      max-width:1100px;
-      margin:28px auto;
-      padding:0 16px;
-    }
-
-    h1{font-size:22px;margin-bottom:16px}
+    :root{--gap:12px;--radius:10px;--line:#e5e7eb;--muted:#6b7280;--brand:#0e7afe}
+    *{box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;margin:0;background:#fafafa;color:#111}
+    .wrap{max-width:1100px;margin:28px auto;padding:0 16px}
+    h1{font-size:22px;margin:0 0 16px}
     .muted{color:var(--muted);font-size:12px}
-
-    fieldset{
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:16px;
-      margin-bottom:16px;
-      background:white;
-    }
-
-    label{display:block;margin:10px 0 6px}
-    input,textarea,select{
-      width:100%;
-      padding:9px;
-      border:1px solid #d1d5db;
-      border-radius:8px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:var(--gap);
-    }
-
+    fieldset{border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:0 0 16px;background:#fff}
+    legend{padding:0 8px;font-weight:600}
+    label{display:block;font-size:13px;margin:10px 0 6px}
+    input,textarea,select{width:100%;padding:9px;border:1px solid #d1d5db;border-radius:8px;background:#fff}
+    select{appearance:auto}
+    textarea{resize:vertical}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap)}
+    .col-12{grid-column:span 12}
     .col-6{grid-column:span 6}
     .col-4{grid-column:span 4}
-    .col-12{grid-column:span 12}
-
-    button{
-      padding:10px 14px;
-      border:none;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:600;
-    }
-
-    .primary{background:var(--brand);color:white}
-    .secondary{background:#e5e7eb}
-    .danger{background:#ef4444;color:white}
-
-    table{
-      width:100%;
-      border-collapse:collapse;
-      background:white;
-    }
-
-    th,td{
-      border:1px solid var(--line);
-      padding:8px;
-      font-size:13px;
-    }
-
-    .right{
-      display:flex;
-      justify-content:flex-end;
-      gap:10px;
-    }
-
-    @media(max-width:720px){
-      .col-6,.col-4{grid-column:span 12}
-    }
+    .col-3{grid-column:span 3}
+    .row-actions{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+    button{padding:10px 14px;border:0;border-radius:10px;cursor:pointer;font-weight:600}
+    .primary{background:var(--brand);color:#fff}
+    .secondary{background:#f3f4f6}
+    .danger{background:#ef4444;color:#fff}
+    table{width:100%;border-collapse:collapse;background:#fff}
+    th,td{border:1px solid var(--line);padding:8px;text-align:left;font-size:13px}
+    tfoot td{font-weight:700}
+    .num{max-width:120px}
+    .right{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    @media (max-width:720px){.col-6,.col-4,.col-3{grid-column:span 12}.num{max-width:100%}}
+    @media print{.no-print{display:none!important}.wrap{max-width:100%;margin:0;padding:0}body{background:#fff}}
   </style>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
-
 <body>
-
-  <!-- 🔷 HEADER -->
-  <div class="header">
-    <h2>Perkhidmatan Makmal BPT, JMG</h2>
-    <button class="btn-home" onclick="goHome()">← Dashboard</button>
-  </div>
-
   <div class="wrap">
     <h1>MyGeoLab CIP B</h1>
 
     <form id="cipForm">
-
       <fieldset>
         <legend>Maklumat Resit</legend>
-
         <div class="grid">
           <div class="col-4">
-            <label>No Siri</label>
-            <input id="noSiri" required />
+            <label for="noSiri">No Siri</label>
+            <input id="noSiri" name="No_Siri" required />
+            <div class="muted">Auto bertambah selepas hantar.</div>
           </div>
-
           <div class="col-4">
-            <label>Tarikh</label>
-            <input id="tarikhBorang" type="date" required />
+            <label for="tarikhBorang">Tarikh Borang</label>
+            <input id="tarikhBorang" name="Tarikh_Borang" type="date" required />
           </div>
-
           <div class="col-4">
-            <label>Tandatangan</label>
-            <input id="tandatangan" />
+            <label for="tandatangan">Tandatangan (nama pegawai)</label>
+            <input id="tandatangan" name="Tandatangan" />
           </div>
 
           <div class="col-6">
-            <label>Kepada</label>
-            <input id="kepada" />
+            <label for="kepadaSelect">Kepada</label>
+            <select id="kepadaSelect" name="Kepada">
+              <option value="">— memuatkan data... —</option>
+            </select>
+            <div id="kepadaHint" class="muted">Sumber: Apps Script API (Alamat, Poskod, Daerah).</div>
           </div>
 
           <div class="col-6">
-            <label>Bayar Kepada</label>
-            <input id="bayarKepada"
-              value="PENGARAH BAHAGIAN PERKHIDMATAN TEKNIKAL"/>
+            <label for="bayarKepada">Bayar Kepada</label>
+            <input id="bayarKepada" name="BayarKepada" value="PENGARAH BAHAGIAN PERKHIDMATAN TEKNIKAL" />
           </div>
-
           <div class="col-12">
-            <label>Alamat</label>
-            <textarea id="alamat"></textarea>
+            <label for="alamatPembayaran">Alamat Pembayaran</label>
+            <textarea id="alamatPembayaran" name="Alamat_Pembayaran" rows="2">BAHAGIAN PERKHIDMATAN TEKNIKAL ( CAW. PERKHIDMATAN  MAKMAL)
+JABATAN MINERAL DAN GEOSAINS,
+JALAN SULTAN AZLAN SHAH,
+31400, IPOH , PERAK</textarea>
           </div>
         </div>
       </fieldset>
 
       <fieldset>
         <legend>Maklumat Item</legend>
-
-        <div class="right">
-          <button type="button" class="secondary" onclick="addItem()">Tambah</button>
-          <button type="button" class="danger" onclick="removeItem()">Buang</button>
+        <div class="row-actions no-print">
+          <button type="button" class="secondary" onclick="addItem()">Tambah Item</button>
+          <button type="button" class="danger" onclick="removeLastItem()">Buang Item Akhir</button>
         </div>
-
-        <table>
+        <table id="itemsTable">
           <thead>
             <tr>
-              <th>Tarikh</th>
-              <th>Butiran</th>
-              <th>RM</th>
+              <th style="width:130px">Tarikh</th>
+              <th>Rujukan Tuan</th>
+              <th>Rujukan Kami</th>
+              <th>Butir Ringkas</th>
+              <th style="width:120px">Jumlah (RM)</th>
+              <th style="width:90px">Sen</th>
             </tr>
           </thead>
-          <tbody id="tbody"></tbody>
+          <tbody></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">Jumlah Akhir</td>
+              <td><input id="jumlahRM" class="num" readonly /></td>
+              <td><input id="jumlahSen" class="num" readonly /></td>
+            </tr>
+          </tfoot>
         </table>
       </fieldset>
 
-      <div class="right">
+      <div class="right no-print">
+        <button type="button" class="secondary" id="btnHome">Home</button>
+        <button type="button" class="secondary" onclick="downloadPDF()">Muat Turun PDF</button>
         <button type="button" onclick="window.print()">Cetak</button>
-        <button type="submit" class="primary">Hantar</button>
+        <button id="btnSubmit" type="submit" class="primary">Hantar & Kosongkan</button>
+        <button type="button" onclick="resetFormAll()">Reset</button>
       </div>
-
     </form>
   </div>
 
-<script>
+  <script>
+    /* ============== HOME URL ============== */
+    const HOME_URL = 'dashboard.html';
+    document.getElementById('btnHome').addEventListener('click', ()=>{ location.href = HOME_URL; });
 
-function goHome(){
-  window.location.href = "dashboard.html";
-}
+    /* ====================== URL APPS SCRIPT ====================== */
+    const API_URL       = 'https://script.google.com/macros/s/AKfycbz9XytYo94UFfr08ChwUfJoD-giWSrzzhypMdJ-LIC5B6co6kWOv7qD478wc0QRJno/exec?action=sheet';
+    const DRIVE_API_URL = 'https://script.google.com/macros/s/AKfycbz9XytYo94UFfr08ChwUfJoD-giWSrzzhypMdJ-LIC5B6co6kWOv7qD478wc0QRJno/exec';
 
-function addItem(){
-  const row = `
-    <tr>
-      <td><input type="date"></td>
-      <td><input></td>
-      <td><input type="number"></td>
-    </tr>
-  `;
-  document.getElementById("tbody").innerHTML += row;
-}
+    /* ====================== DATA "Kepada" ====================== */
+    async function fetchAllRowsFromAPI(){
+      const res  = await fetch(API_URL, { cache: 'no-store' });
+      const text = await res.text();
+      if (!res.ok) throw new Error(`HTTP ${res.status} – ${text.slice(0,120)}`);
+      let arr; try { arr = JSON.parse(text); }
+      catch { throw new Error(`Bukan JSON dari API. Dapat: "${text.slice(0,120)}"`); }
+      return (arr || [])
+        .map(o => [
+          (o.alamat ?? '').toString().trim(),
+          (o.poskod ?? '').toString().trim(),
+          (o.daerah ?? '').toString().trim()
+        ])
+        .filter(([a]) => a !== '');
+    }
 
-function removeItem(){
-  const tbody = document.getElementById("tbody");
-  if(tbody.lastElementChild) tbody.removeChild(tbody.lastElementChild);
-}
+    function populateKepadaDropdown(rows){
+      const sel = document.getElementById('kepadaSelect');
+      sel.innerHTML = '<option value="">— pilih penerima —</option>';
+      rows.forEach(([alamat, poskod, daerah])=>{
+        const text = `${alamat}, ${poskod || '-'}, ${daerah || '-'}`;
+        const opt = document.createElement('option');
+        opt.value = text; opt.textContent = text;
+        sel.appendChild(opt);
+      });
+      document.getElementById('kepadaHint').textContent =
+        rows.length ? `Sumber: API — ${rows.length} rekod dimuatkan.` : 'Tiada data ditemui dari API.';
+    }
 
-document.getElementById("cipForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  alert("Data berjaya dihantar!");
-});
+    /* ====================== UTIL NAMA FAIL ====================== */
+    function extractNamaPenerima(kepadaValue){
+      const v = (kepadaValue || '').trim();
+      if (!v) return '';
+      return v.split(',')[0].trim();
+    }
+    function makeSafeFilename(noSiri, nama){
+      const raw = `${noSiri || 'CIP'} ${nama || ''}`.trim();
+      let safe = raw.replace(/[\\\/:*?"<>|]+/g, ' ').replace(/\s+/g, ' ').trim();
+      if (safe.length > 120) safe = safe.slice(0,120).trim();
+      return `${safe}.pdf`;
+    }
 
-</script>
+    /* ====================== UTIL PDF + UPLOAD ====================== */
+    function buildPDFandGetBase64(data, filenameHint='CIP.pdf'){
+      const { jsPDF } = window.jspdf || {};
+      if(!jsPDF) throw new Error('jsPDF belum dimuat');
+      const doc = new jsPDF({unit:'pt', format:'a4'});
+      const pageW = doc.internal.pageSize.getWidth();
+      const margin = 40;
 
+      doc.setFont('helvetica','bold'); doc.setFontSize(11);
+      doc.text('ASAL', margin, 28);
+      doc.setLineWidth(0.6); doc.line(margin, 32, margin+24, 32);
+      doc.setFont('helvetica','bold'); doc.text('KERAJAAN.............................................................', margin+140, 28);
+      doc.setFont('helvetica','normal'); doc.setFontSize(9);
+      doc.text('(Am 115—Pin. 11/80)', pageW - margin - 110, 18);
+      doc.setFontSize(12); doc.text(`CIP ${data.No_Siri}`, pageW - margin - 120, 40);
+
+      doc.setFont('helvetica','normal'); doc.setFontSize(10);
+      doc.text(`Kepada: ${data.Kepada || ''}`, margin, 70);
+      const instr = 'Sila sempurnakan bayaran untuk perkhidmatan yang tersebut di bawah dengan seberapa segera. Cek, Kiriman Wang, atau Wang Pos mestilah dipalang dan dibuat supaya dibayar kepada:';
+      doc.text(doc.splitTextToSize(instr, pageW - margin*2), margin, 92);
+      doc.text(`${data.BayarKepada || ''}`, margin, 112);
+
+      const top = 140, left = margin, right = pageW - margin, height = 260, rowH = 24;
+      const colW = [80, 110, 110, (right-left) - (80+110+110+70+40), 70, 40];
+      doc.setDrawColor(0); doc.setLineWidth(0.6); doc.rect(left, top, right-left, height);
+      doc.setFont('helvetica','bold'); doc.setFontSize(10);
+      doc.text('Tarikh', left+4, top+14);
+      doc.text('Rujukan Tuan', left+4+colW[0], top+14);
+      doc.text('Rujukan Kami', left+4+colW[0]+colW[1], top+14);
+      doc.text('Butir-butir Ringkas', left+4+colW[0]+colW[1]+colW[2], top+14);
+      doc.text('RM', left+4+colW[0]+colW[1]+colW[2]+colW[3], top+14);
+      doc.text('sen', left+4+colW[0]+colW[1]+colW[2]+colW[3]+colW[4], top+14);
+      doc.line(left, top+18, right, top+18);
+      let x = left; for(let i=0;i<colW.length-1;i++){ x += colW[i]; doc.line(x, top, x, top+height); }
+
+      doc.setFont('helvetica','normal'); doc.setFontSize(10);
+      let y = top+18;
+      const rows = Math.max(10, (data.Maklumat||[]).length);
+      for(let r=0; r<rows && y < top+height; r++){
+        const it = data.Maklumat[r] || {};
+        doc.text(it.Tarikh||'', left+4, y+14);
+        doc.text(it.Rujukan_Tuan||'', left+4+colW[0], y+14);
+        doc.text(it.Rujukan_Kami||'', left+4+colW[0]+colW[1], y+14);
+        const desc = doc.splitTextToSize(it.Butir_Ringkas||'', colW[3]-8);
+        doc.text(desc, left+4+colW[0]+colW[1]+colW[2], y+14);
+        doc.text((it.Jumlah_RM||'').toString(), left+4+colW[0]+colW[1]+colW[2]+colW[3], y+14);
+        doc.text((it.Jumlah_SEN||it.Jumlah_Sen||'').toString(), left+4+colW[0]+colW[1]+colW[2]+colW[3]+colW[4], y+14);
+        y += rowH; doc.line(left, y, right, y);
+      }
+
+      const rmX = left + colW[0] + colW[1] + colW[2] + colW[3];
+      const senX = rmX + colW[4];
+      const sumYTop = top + height - 2;
+      const sumYText = top + height + 14;
+      doc.text('JUMLAH ..', rmX - 80, sumYText);
+      doc.rect(rmX, sumYTop, colW[4], 22);
+      doc.rect(senX, sumYTop, colW[5], 22);
+      doc.text(String(data.Jumlah_Akhir.RM||''), rmX + 6, sumYText);
+      doc.text(String(data.Jumlah_Akhir.Sen||''), senX + 6, sumYText);
+      const baseY = top+height+42;
+      doc.text(`Tarikh: ${data.Tarikh_Borang||''}`, margin, baseY);
+      doc.text(`Tandatangan: ${data.Tandatangan||''}`, pageW/2, baseY);
+      doc.text('Pembayaran hendaklah dialamatkan kepada —', margin, baseY+22);
+      doc.text(doc.splitTextToSize(data.Alamat_Pembayaran||'', pageW - margin*2), margin, baseY+38);
+
+      const base64 = doc.output('datauristring').split(',')[1];
+      const filename = (filenameHint || 'CIP.pdf').replace(/[^\w\-\.]+/g,'_');
+      return { base64, filename };
+    }
+
+    async function uploadPDFtoDrive(base64, filename){
+      const body = new URLSearchParams({ filename, data: base64 });
+      const res = await fetch(DRIVE_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body
+      });
+      try { return await res.json(); } catch { return { ok:true }; }
+    }
+
+    /* ====================== BORANG: util sedia ada ====================== */
+    const SERIAL_KEY = 'cip_serial';
+    const DEFAULT_SERIAL = 'B032506';
+
+    function getNextSerial(current){
+      const m = (current || DEFAULT_SERIAL).match(/^([A-Za-z]*)(\d+)$/);
+      if(!m){ return DEFAULT_SERIAL; }
+      const prefix = m[1] || '';
+      const n = m[2];
+      const next = String(parseInt(n,10)+1).padStart(n.length,'0');
+      return prefix + next;
+    }
+    function loadSerial(){
+      const last = localStorage.getItem(SERIAL_KEY) || DEFAULT_SERIAL;
+      document.getElementById('noSiri').value = last;
+    }
+    function bumpAndStoreSerial(){
+      const cur = document.getElementById('noSiri').value.trim() || DEFAULT_SERIAL;
+      const next = getNextSerial(cur);
+      localStorage.setItem(SERIAL_KEY, next);
+      document.getElementById('noSiri').value = next;
+    }
+    function romanMonth(d=new Date()){
+      const r=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII']; return r[d.getMonth()];
+    }
+    function defaultRujukanTuan(){ return `JMG.TKL:(A) 800 (${romanMonth()})`; }
+
+    function addItem(){
+      const tbody = document.querySelector('#itemsTable tbody');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="date" class="it-tarikh" /></td>
+        <td><input type="text" class="it-rtuan" /></td>
+        <td><input type="text" class="it-rkami" /></td>
+        <td><input type="text" class="it-butir" /></td>
+        <td><input type="number" min="0" step="1" class="it-rm num" oninput="recalcTotal()" /></td>
+        <td><input type="number" min="0" max="99" step="1" class="it-sen num" oninput="recalcTotal()" /></td>`;
+      tbody.appendChild(tr);
+      tr.querySelector('.it-rtuan').value = defaultRujukanTuan();
+    }
+    function removeLastItem(){
+      const tbody = document.querySelector('#itemsTable tbody');
+      if(tbody.lastElementChild){ tbody.removeChild(tbody.lastElementChild); recalcTotal(); }
+    }
+    function recalcTotal(){
+      const rmList = [...document.querySelectorAll('.it-rm')].map(i=>parseInt(i.value||'0',10));
+      const senList = [...document.querySelectorAll('.it-sen')].map(i=>parseInt(i.value||'0',10));
+      let totalSen = senList.reduce((a,b)=>a+b,0);
+      let carry = Math.floor(totalSen/100);
+      totalSen = totalSen % 100;
+      let totalRM = rmList.reduce((a,b)=>a+b,0) + carry;
+      document.getElementById('jumlahRM').value = totalRM;
+      document.getElementById('jumlahSen').value = String(totalSen).padStart(2,'0');
+    }
+    function buildJSON(){
+      const items = [...document.querySelectorAll('#itemsTable tbody tr')].map(tr=>({
+        "Tarikh": tr.querySelector('.it-tarikh').value || "",
+        "Rujukan_Tuan": tr.querySelector('.it-rtuan').value || "",
+        "Rujukan_Kami": tr.querySelector('.it-rkami').value || "",
+        "Butir_Ringkas": tr.querySelector('.it-butir').value || "",
+        "Jumlah_RM": tr.querySelector('.it-rm').value || "",
+        "Jumlah_Sen": tr.querySelector('.it-sen').value || ""
+      }));
+      return {
+        "No_Siri": document.getElementById('noSiri').value.trim(),
+        "Kepada": document.getElementById('kepadaSelect').value.trim(),
+        "BayarKepada": document.getElementById('bayarKepada').value.trim(),
+        "Maklumat": items,
+        "Jumlah_Akhir": {
+          "RM": document.getElementById('jumlahRM').value || "",
+          "Sen": document.getElementById('jumlahSen').value || ""
+        },
+        "Tarikh_Borang": document.getElementById('tarikhBorang').value || "",
+        "Tandatangan": document.getElementById('tandatangan').value.trim(),
+        "Alamat_Pembayaran": document.getElementById('alamatPembayaran').value.trim()
+      };
+    }
+
+    /* ====================== DOWNLOAD PDF MANUAL ====================== */
+    function downloadPDF(){
+      const data = buildJSON();
+      const nama = extractNamaPenerima(data.Kepada);
+      const filename = makeSafeFilename(data.No_Siri, nama);
+      const gen = buildPDFandGetBase64(data, filename);
+      const link = document.createElement('a');
+      link.href = 'data:application/pdf;base64,' + gen.base64;
+      link.download = gen.filename;
+      link.click();
+    }
+
+    /* ====================== SUBMIT: SIMPAN KE DRIVE ====================== */
+    function setSubmitState(loading){
+      const btn = document.getElementById('btnSubmit');
+      if (!btn) return;
+      btn.disabled = !!loading;
+      btn.textContent = loading ? 'Menghantar...' : 'Hantar & Kosongkan';
+    }
+
+    document.getElementById('cipForm').addEventListener('submit', async function(e){
+      e.preventDefault();
+      setSubmitState(true);
+
+      let msg = '';
+      try {
+        const data = buildJSON();
+        const nama = extractNamaPenerima(data.Kepada);
+        const filename = makeSafeFilename(data.No_Siri, nama);
+        const pdf  = buildPDFandGetBase64(data, filename);
+
+        const res = await Promise.race([
+          uploadPDFtoDrive(pdf.base64, pdf.filename),
+          new Promise((_, rej) => setTimeout(()=>rej(new Error('TIMEOUT: 30s')), 30000))
+        ]);
+
+        if (res && res.ok) {
+          msg = `PDF disimpan ke Google Drive${res.url ? ':\n' + res.url : ''}`;
+        } else {
+          msg = 'Gagal simpan ke Drive. Semak Apps Script & permission.';
+        }
+      } catch (err) {
+        console.error(err);
+        msg = 'Ralat semasa jana/hantar PDF: ' + String(err.message || err);
+      } finally {
+        setSubmitState(false);
+      }
+
+      alert(msg);
+      bumpAndStoreSerial();
+      clearFormKeepSerialNext();
+    });
+
+    /* ====================== INIT ====================== */
+    function clearFormKeepSerialNext(){
+      document.getElementById('kepadaSelect').value = '';
+      document.getElementById('bayarKepada').value = 'PENGARAH BAHAGIAN PERKHIDMATAN TEKNIKAL';
+      document.getElementById('alamatPembayaran').value =
+        'BAHAGIAN PERKHIDMATAN TEKNIKAL ( CAW. PERKHIDMATAN  MAKMAL)\nJABATAN MINERAL DAN GEOSAINS,\nJALAN SULTAN AZLAN SHAH,\n31400, IPOH , PERAK';
+      document.getElementById('tandatangan').value = '';
+      document.getElementById('tarikhBorang').valueAsDate = new Date();
+      const tbody = document.querySelector('#itemsTable tbody');
+      tbody.innerHTML = '';
+      addItem(); recalcTotal();
+    }
+    function resetFormAll(){
+      localStorage.removeItem(SERIAL_KEY);
+      loadSerial();
+      clearFormKeepSerialNext();
+    }
+
+    document.addEventListener('DOMContentLoaded', async ()=>{
+      loadSerial();
+      document.getElementById('tarikhBorang').valueAsDate = new Date();
+      document.getElementById('bayarKepada').value = 'PENGARAH BAHAGIAN PERKHIDMATAN TEKNIKAL';
+      document.getElementById('alamatPembayaran').value =
+        'BAHAGIAN PERKHIDMATAN TEKNIKAL ( CAW. PERKHIDMATAN  MAKMAL)\nJABATAN MINERAL DAN GEOSAINS,\nJALAN SULTAN AZLAN SHAH,\n31400, IPOH , PERAK';
+      addItem(); recalcTotal();
+
+      try{
+        const rows = await fetchAllRowsFromAPI();
+        populateKepadaDropdown(rows);
+      }catch(err){
+        console.error(err);
+        document.getElementById('kepadaSelect').innerHTML = '<option value="">— gagal memuatkan data —</option>';
+        document.getElementById('kepadaHint').textContent = 'API gagal: ' + String(err.message || err);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.altKey && (e.key === 'h' || e.key === 'H')) location.href = HOME_URL;
+    });
+  </script>
 </body>
 </html>
