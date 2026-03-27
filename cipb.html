@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CIP B - Makmal BPT</title>
+
+  <style>
+    :root{
+      --gap:12px;
+      --radius:10px;
+      --line:#e5e7eb;
+      --muted:#6b7280;
+      --brand:#0e7afe;
+    }
+
+    body{
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto;
+      margin:0;
+      background:#f4f7fb;
+    }
+
+    /* 🔷 HEADER (baru tambah supaya sama dengan dashboard) */
+    .header{
+      background:#0f172a;
+      color:white;
+      padding:16px 20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .header h2{
+      margin:0;
+      font-size:18px;
+    }
+
+    .btn-home{
+      background:#22c55e;
+      border:none;
+      padding:8px 14px;
+      border-radius:8px;
+      color:white;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:28px auto;
+      padding:0 16px;
+    }
+
+    h1{font-size:22px;margin-bottom:16px}
+    .muted{color:var(--muted);font-size:12px}
+
+    fieldset{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:16px;
+      margin-bottom:16px;
+      background:white;
+    }
+
+    label{display:block;margin:10px 0 6px}
+    input,textarea,select{
+      width:100%;
+      padding:9px;
+      border:1px solid #d1d5db;
+      border-radius:8px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:var(--gap);
+    }
+
+    .col-6{grid-column:span 6}
+    .col-4{grid-column:span 4}
+    .col-12{grid-column:span 12}
+
+    button{
+      padding:10px 14px;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    .primary{background:var(--brand);color:white}
+    .secondary{background:#e5e7eb}
+    .danger{background:#ef4444;color:white}
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:white;
+    }
+
+    th,td{
+      border:1px solid var(--line);
+      padding:8px;
+      font-size:13px;
+    }
+
+    .right{
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+    }
+
+    @media(max-width:720px){
+      .col-6,.col-4{grid-column:span 12}
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+  <!-- 🔷 HEADER -->
+  <div class="header">
+    <h2>Perkhidmatan Makmal BPT, JMG</h2>
+    <button class="btn-home" onclick="goHome()">← Dashboard</button>
+  </div>
+
+  <div class="wrap">
+    <h1>MyGeoLab CIP B</h1>
+
+    <form id="cipForm">
+
+      <fieldset>
+        <legend>Maklumat Resit</legend>
+
+        <div class="grid">
+          <div class="col-4">
+            <label>No Siri</label>
+            <input id="noSiri" required />
+          </div>
+
+          <div class="col-4">
+            <label>Tarikh</label>
+            <input id="tarikhBorang" type="date" required />
+          </div>
+
+          <div class="col-4">
+            <label>Tandatangan</label>
+            <input id="tandatangan" />
+          </div>
+
+          <div class="col-6">
+            <label>Kepada</label>
+            <input id="kepada" />
+          </div>
+
+          <div class="col-6">
+            <label>Bayar Kepada</label>
+            <input id="bayarKepada"
+              value="PENGARAH BAHAGIAN PERKHIDMATAN TEKNIKAL"/>
+          </div>
+
+          <div class="col-12">
+            <label>Alamat</label>
+            <textarea id="alamat"></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Maklumat Item</legend>
+
+        <div class="right">
+          <button type="button" class="secondary" onclick="addItem()">Tambah</button>
+          <button type="button" class="danger" onclick="removeItem()">Buang</button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Tarikh</th>
+              <th>Butiran</th>
+              <th>RM</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </fieldset>
+
+      <div class="right">
+        <button type="button" onclick="window.print()">Cetak</button>
+        <button type="submit" class="primary">Hantar</button>
+      </div>
+
+    </form>
+  </div>
+
+<script>
+
+function goHome(){
+  window.location.href = "dashboard.html";
+}
+
+function addItem(){
+  const row = `
+    <tr>
+      <td><input type="date"></td>
+      <td><input></td>
+      <td><input type="number"></td>
+    </tr>
+  `;
+  document.getElementById("tbody").innerHTML += row;
+}
+
+function removeItem(){
+  const tbody = document.getElementById("tbody");
+  if(tbody.lastElementChild) tbody.removeChild(tbody.lastElementChild);
+}
+
+document.getElementById("cipForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  alert("Data berjaya dihantar!");
+});
+
+</script>
+
+</body>
+</html>
