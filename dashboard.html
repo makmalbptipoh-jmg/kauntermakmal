@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Utama | Perkhidmatan Makmal BPT, JMG</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              50: '#f4f8fb',
+              100: '#eaf3f8',
+              200: '#cfe3ee',
+              300: '#9bc8dd',
+              400: '#66aac8',
+              500: '#3689af',
+              600: '#226d92',
+              700: '#195675',
+              800: '#15354c',
+              900: '#0a1627'
+            },
+            accent: '#7cd3ea',
+            ink: '#19202a',
+            soft: '#f8fbfd'
+          },
+          boxShadow: {
+            soft: '0 20px 60px rgba(10, 22, 39, 0.10)',
+            card: '0 10px 30px rgba(10, 22, 39, 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+    .hero-pattern {
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.18) 1px, transparent 0),
+        linear-gradient(135deg, rgba(124,211,234,0.08), rgba(255,255,255,0));
+      background-size: 34px 34px, auto;
+    }
+    .page-pattern {
+      background-image: radial-gradient(circle at 1px 1px, rgba(21,53,76,0.06) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+  </style>
+</head>
+<body class="page-pattern min-h-screen bg-soft font-sans text-ink selection:bg-accent/40">
+  <div class="min-h-screen lg:flex">
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 -translate-x-full border-r border-slate-200 bg-white transition-transform duration-300 lg:translate-x-0">
+      <div class="flex h-full flex-col">
+        <div class="border-b border-slate-200 p-6">
+          <div class="flex items-center gap-4 rounded-3xl bg-brand-900 p-5 text-white shadow-card">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-brand-900">
+              <span class="material-symbols-outlined text-[30px]">science</span>
+            </div>
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.22em] text-accent">Portal Dalaman Staf</p>
+              <h1 class="text-lg font-extrabold tracking-tight">Perkhidmatan Makmal BPT</h1>
+              <p class="text-xs text-slate-300">Sistem Makmal JMG</p>
+            </div>
+          </div>
+        </div>
+
+        <nav class="flex-1 space-y-1 px-4 py-6 text-sm font-semibold text-slate-600">
+          <a href="#" class="flex items-center gap-3 rounded-2xl bg-brand-900 px-4 py-3 text-white shadow-card">
+            <span class="material-symbols-outlined">dashboard</span>
+            Dashboard
+          </a>
+          <a href="#modules" class="flex items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-brand-50 hover:text-brand-800">
+            <span class="material-symbols-outlined">storefront</span>
+            Operasi Kaunter
+          </a>
+          <a href="#modules" class="flex items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-brand-50 hover:text-brand-800">
+            <span class="material-symbols-outlined">database</span>
+            Data &amp; Rekod
+          </a>
+          <a href="#modules" class="flex items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-brand-50 hover:text-brand-800">
+            <span class="material-symbols-outlined">inventory_2</span>
+            Inventori &amp; Rujukan
+          </a>
+          <a href="#modules" class="flex items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-brand-50 hover:text-brand-800">
+            <span class="material-symbols-outlined">payments</span>
+            Pembayaran &amp; Permohonan
+          </a>
+          <a href="#mygeolabq" class="flex items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-brand-50 hover:text-brand-800">
+            <span class="material-symbols-outlined">confirmation_number</span>
+            MyGeoLab Q
+          </a>
+
+          <div class="mt-4 border-t border-slate-200 pt-4">
+            <a href="#" class="flex items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-brand-50 hover:text-brand-800">
+              <span class="material-symbols-outlined">menu_book</span>
+              Manual Pengguna
+            </a>
+            <a href="#" class="flex items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-brand-50 hover:text-brand-800">
+              <span class="material-symbols-outlined">support_agent</span>
+              Hubungi Admin
+            </a>
+          </div>
+        </nav>
+
+        <div class="border-t border-slate-200 p-4">
+          <button id="logoutButton" class="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold text-red-600 transition hover:bg-red-50">
+            <span class="material-symbols-outlined">logout</span>
+            Log Keluar
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex-1 lg:ml-72">
+      <header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 backdrop-blur">
+        <div class="flex items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+          <div class="flex items-center gap-3">
+            <button id="menuButton" class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 text-slate-600 lg:hidden">
+              <span class="material-symbols-outlined">menu</span>
+            </button>
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.22em] text-brand-700">Portal Dalaman Staf</p>
+              <h2 class="text-lg font-extrabold tracking-tight text-brand-900">Perkhidmatan Makmal BPT, JMG</h2>
+            </div>
+          </div>
+
+          <div class="hidden items-center gap-2 md:flex">
+            <a href="#" class="rounded-xl px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-brand-50 hover:text-brand-800">Dashboard</a>
+            <a href="#modules" class="rounded-xl px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-brand-50 hover:text-brand-800">Operasi</a>
+            <a href="#modules" class="rounded-xl px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-brand-50 hover:text-brand-800">Inventori</a>
+            <a href="#modules" class="rounded-xl px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-brand-50 hover:text-brand-800">Rekod</a>
+            <a href="#modules" class="rounded-xl px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-brand-50 hover:text-brand-800">Permohonan</a>
+          </div>
+
+          <div class="flex items-center gap-2 sm:gap-3">
+            <button class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 text-slate-600 transition hover:border-brand-200 hover:bg-brand-50 hover:text-brand-800">
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button class="hidden h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 text-slate-600 transition hover:border-brand-200 hover:bg-brand-50 hover:text-brand-800 sm:inline-flex">
+              <span class="material-symbols-outlined">settings</span>
+            </button>
+            <button class="hidden h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 text-slate-600 transition hover:border-brand-200 hover:bg-brand-50 hover:text-brand-800 sm:inline-flex">
+              <span class="material-symbols-outlined">help</span>
+            </button>
+            <div class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
+              <div class="hidden text-right sm:block">
+                <p id="userDisplay" class="text-sm font-extrabold text-slate-800">Pengguna</p>
+                <p class="text-xs font-medium text-slate-500">Staf Berdaftar</p>
+              </div>
+              <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-900 text-sm font-extrabold uppercase text-white">BP</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="relative overflow-hidden px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+          <div class="absolute inset-0 bg-brand-900"></div>
+          <div class="hero-pattern absolute inset-0"></div>
+          <div class="absolute -left-10 top-6 h-56 w-56 rounded-full bg-accent/10 blur-3xl"></div>
+          <div class="absolute bottom-0 right-0 h-52 w-52 rounded-full bg-white/5 blur-3xl"></div>
+
+          <div class="relative z-10 mx-auto max-w-7xl">
+            <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-accent">
+              <span class="h-2 w-2 rounded-full bg-accent"></span>
+              Dashboard Utama
+            </div>
+            <h1 class="mt-6 max-w-4xl text-4xl font-extrabold leading-tight text-white lg:text-6xl">
+              Perkhidmatan Makmal <span class="text-accent">BPT, JMG</span>
+            </h1>
+            <p class="mt-5 max-w-3xl text-base leading-8 text-slate-300 lg:text-lg">
+              Platform digital bersepadu untuk pengurusan kaunter, pendaftaran sampel, semakan status,
+              pembayaran, inventori, dan rujukan makmal.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="#modules" class="inline-flex items-center gap-3 rounded-2xl bg-accent px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.16em] text-brand-900 shadow-card transition hover:-translate-y-0.5">
+                <span class="material-symbols-outlined">add_box</span>
+                Daftar Sampel
+              </a>
+              <a href="#modules" class="inline-flex items-center gap-3 rounded-2xl border border-white/15 px-6 py-3.5 text-sm font-extrabold uppercase tracking-[0.16em] text-white transition hover:bg-white/5">
+                <span class="material-symbols-outlined">database</span>
+                Semak Status / Database
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="relative z-10 -mt-6 px-4 sm:px-6 lg:px-8">
+          <div class="mx-auto grid max-w-7xl gap-5 md:grid-cols-2 xl:grid-cols-4">
+            <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-card">
+              <div class="mb-4 flex items-start justify-between">
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-700">
+                  <span class="material-symbols-outlined">grid_view</span>
+                </div>
+                <span class="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Jumlah Modul</span>
+              </div>
+              <p class="text-3xl font-extrabold text-brand-900">12</p>
+              <p class="mt-1 text-sm font-semibold text-brand-700">Aktif Sepenuhnya</p>
+            </div>
+            <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-card">
+              <div class="mb-4 flex items-start justify-between">
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-100 text-brand-900">
+                  <span class="material-symbols-outlined">pending_actions</span>
+                </div>
+                <span class="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Permohonan Aktif</span>
+              </div>
+              <p class="text-3xl font-extrabold text-brand-900">48</p>
+              <p class="mt-1 text-sm font-semibold text-rose-600">12 Menunggu Tindakan</p>
+            </div>
+            <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-card">
+              <div class="mb-4 flex items-start justify-between">
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-700">
+                  <span class="material-symbols-outlined">groups</span>
+                </div>
+                <span class="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Status Queue</span>
+              </div>
+              <p class="text-3xl font-extrabold text-brand-900">5 <span class="text-lg font-semibold text-slate-400">Ptg</span></p>
+              <p class="mt-1 text-sm font-semibold text-brand-700">Purata: 15 minit</p>
+            </div>
+            <div class="rounded-3xl border border-brand-900 bg-brand-900 p-6 text-white shadow-soft">
+              <div class="mb-3 flex items-center gap-3">
+                <span class="material-symbols-outlined text-accent">campaign</span>
+                <h3 class="text-sm font-extrabold uppercase tracking-[0.16em]">Makluman Sistem</h3>
+              </div>
+              <p class="text-sm leading-7 text-slate-300">Sistem sedang dalam fasa penambahbaikan. Sekiranya terdapat sebarang masalah, sila hubungi pentadbir sistem.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="modules" class="px-4 py-12 sm:px-6 lg:px-8">
+          <div class="mx-auto max-w-7xl">
+            <div class="mb-8 flex flex-col gap-2">
+              <h2 class="text-2xl font-extrabold tracking-tight text-brand-900">Modul Utama Portal</h2>
+              <p class="text-sm text-slate-500">Klik pada modul untuk memulakan tugasan.</p>
+            </div>
+
+            <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+              <button type="button" data-module="Data Entry" class="group rounded-3xl border border-slate-200 bg-white p-6 text-left shadow-card transition hover:-translate-y-1 hover:border-brand-300">
+                <div class="mb-6 flex items-start justify-between">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 transition group-hover:bg-brand-700 group-hover:text-white">
+                    <span class="material-symbols-outlined">edit_note</span>
+                  </div>
+                  <span class="rounded-full bg-brand-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-brand-700">Operasi</span>
+                </div>
+                <h3 class="text-lg font-extrabold text-brand-900">Data Entry</h3>
+                <p class="mt-2 text-sm leading-7 text-slate-500">Pendaftaran sampel harian dan kemasukan data primer makmal.</p>
+              </button>
+
+              <button type="button" data-module="CIP B" class="group rounded-3xl border border-slate-200 bg-white p-6 text-left shadow-card transition hover:-translate-y-1 hover:border-brand-300">
+                <div class="mb-6 flex items-start justify-between">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 transition group-hover:bg-brand-700 group-hover:text-white">
+                    <span class="material-symbols-outlined">science</span>
+                  </div>
+                  <span class="rounded-full bg-brand-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-brand-700">Operasi</span>
+                </div>
+                <h3 class="text-lg font-extrabold text-brand-900">CIP B</h3>
+                <p class="mt-2 text-sm leading-7 text-slate-500">Pengurusan sampel batuan dan mineral bagi analisis fizikal.</p>
+              </button>
+
+              <button type="button" data-module="MyGeoLab" class="group rounded-3xl border border-slate-200 bg-white p-6 text-left shadow-card transition hover:-translate-y-1 hover:border-brand-300">
+                <div class="mb-6 flex items-start justify-between">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 transition group-hover:bg-brand-700 group-hover:text-white">
+                    <span class="material-symbols-outlined">biotech</span>
+                  </div>
+                  <span class="rounded-full bg-brand-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-brand-700">Operasi</span>
+                </div>
+                <h3 class="text-lg font-extrabold text-brand-900">MyGeoLab</h3>
+                <p class="mt-2 text-sm leading-7 text-slate-500">Sistem pangkalan data makmal geosains bersepadu nasional.</p>
+              </button>
+
+              <button type="button" data-module="MyGeoLab Q" class="group rounded-3xl border border-slate-200 bg-white p-6 text-left shadow-card transition hover:-translate-y-1 hover:border-brand-300">
+                <div class="mb-6 flex items-start justify-between">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 transition group-hover:bg-brand-700 group-hover:text-white">
+                    <span class="material-symbols-outlined">confirmation_number</span>
+                  </div>
+                  <span class="rounded-full bg-sky-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-sky-700">Antrian</span>
+                </div>
+                <h3 class="text-lg font-extrabold text-brand-900">MyGeoLab Q</h3>
+                <p class="mt-2 text-sm leading-7 text-slate-500">Sistem pengurusan nombor giliran kaunter makmal BPT.</p>
+              </button>
+
+              <button type="button" data-module="Database Central" class="group rounded-3xl border border-slate-200 bg-white p-6 text-left shadow-card transition hover:-translate-y-1 hover:border-brand-300">
+                <div class="mb-6 flex items-start justify-between">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-brand-900 transition group-hover:bg-brand-900 group-hover:text-white">
+                    <span class="material-symbols-outlined">database</span>
+                  </div>
+                  <span class="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-brand-900">Rekod</span>
+                </div>
+                <h3 class="text-lg font-extrabold text-brand-900">Database Central</h3>
+                <p class="mt-2 text-sm leading-7 text-slate-500">Arkib digital keputusan ujian dan sejarah sampel.</p>
+              </button>
+
+              <button type="button" data-module="Performance Dashboard" class="group rounded-3xl border border-slate-200 bg-white p-6 text-left shadow-card transition hover:-translate-y-1 hover:border-brand-300">
+                <div class="mb-6 flex items-start justify-between">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-brand-900 transition group-hover:bg-brand-900 group-hover:text-white">
+                    <span class="material-symbols-outlined">monitoring</span>
+                  </div>
+                  <span class="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-brand-900">Analitik</span>
+                </div>
+                <h3 class="text-lg font-extrabold text-brand-900">Performance Dashboard</h3>
+                <p class="mt-2 text-sm leading-7 text-slate-500">Visualisasi KPI makmal dan statistik permohonan tahunan.</p>
+              </button>
+
+              <button type="button" data-module="Stor Makmal BPT" class="group rounded-3xl border border-slate-200 bg-white p-6 text-left shadow-card transition hover:-translate-y-1 hover:border-brand-300">
+                <div class="mb-6 flex items-start justify-between">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 transition group-hover:bg-emerald-700 group-hover:text-white">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                  </div>
+                  <span class="rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-700">Inventori</span>
+                </div>
+                <h3 class="text-lg font-extrabold text-brand-900">Stor Makmal BPT</h3>
+                <p class="mt-2 text-sm leading-7 text-slate-500">Semakan stok bahan kimia, radas dan peralatan makmal.</p>
+              </button>
+
+              <button type="button" data-module="i Payment" class="group rounded-3xl border border-slate-200 bg-white p-6 text-left shadow-card transition hover:-translate-y-1 hover:border-brand-300">
+                <div class="mb-6 flex items-start justify-between">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 transition group-hover:bg-brand-700 group-hover:text-white">
+                    <span class="material-symbols-outlined">payments</span>
+                  </div>
+                  <span class="rounded-full bg-brand-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-brand-700">Kewangan</span>
+                </div>
+                <h3 class="text-lg font-extrabold text-brand-900">i Payment</h3>
+                <p class="mt-2 text-sm leading-7 text-slate-500">Integrasi gerbang pembayaran atas talian kerajaan.</p>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="mygeolabq" class="px-4 pb-14 sm:px-6 lg:px-8 lg:pb-16">
+          <div class="mx-auto max-w-7xl rounded-[28px] border border-slate-200 bg-slate-50 p-6 shadow-card sm:p-8">
+            <div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <h2 class="text-2xl font-extrabold tracking-tight text-brand-900">Pusat Kawalan MyGeoLab Q</h2>
+                <p class="mt-2 text-sm text-slate-500">Konfigurasi dan paparan sistem antrian kaunter.</p>
+              </div>
+              <div class="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-emerald-700">
+                <span class="material-symbols-outlined text-base">sync</span>
+                Sistem Sedang Berjalan
+              </div>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-3">
+              <button type="button" data-module="Display Lobi" class="flex items-center gap-5 rounded-3xl border border-slate-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:border-brand-300 hover:shadow-card">
+                <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-700">
+                  <span class="material-symbols-outlined text-3xl">tv</span>
+                </div>
+                <div>
+                  <h3 class="text-lg font-extrabold text-brand-900">Display Lobi</h3>
+                  <p class="mt-1 text-sm text-slate-500">Buka paparan TV lobi.</p>
+                </div>
+              </button>
+
+              <button type="button" data-module="Dashboard Staf" class="flex items-center gap-5 rounded-3xl border border-slate-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:border-brand-300 hover:shadow-card">
+                <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand-900 text-white">
+                  <span class="material-symbols-outlined text-3xl">admin_panel_settings</span>
+                </div>
+                <div>
+                  <h3 class="text-lg font-extrabold text-brand-900">Dashboard Staf</h3>
+                  <p class="mt-1 text-sm text-slate-500">Panggil dan urus pelanggan.</p>
+                </div>
+              </button>
+
+              <button type="button" data-module="Manual" class="flex items-center gap-5 rounded-3xl border border-slate-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:border-brand-300 hover:shadow-card">
+                <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600">
+                  <span class="material-symbols-outlined text-3xl">menu_book</span>
+                </div>
+                <div>
+                  <h3 class="text-lg font-extrabold text-brand-900">Manual</h3>
+                  <p class="mt-1 text-sm text-slate-500">Tatacara penggunaan sistem.</p>
+                </div>
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="border-t border-slate-200 bg-white px-4 py-6 sm:px-6 lg:px-8">
+        <div class="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p class="font-extrabold text-brand-900">Perkhidmatan Makmal BPT</p>
+            <p class="mt-1">© 2026 Jabatan Mineral dan Geosains Malaysia</p>
+          </div>
+          <div class="flex flex-wrap gap-x-5 gap-y-2 font-semibold">
+            <a href="mailto:lab-support@jmg.gov.my" class="hover:text-brand-800">lab-support@jmg.gov.my</a>
+            <a href="#" class="hover:text-brand-800">Dasar Privasi</a>
+            <a href="#" class="hover:text-brand-800">Polisi Keselamatan</a>
+            <a href="#" class="hover:text-brand-800">Bantuan</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <div id="sidebarBackdrop" class="fixed inset-0 z-30 hidden bg-slate-950/30 lg:hidden"></div>
+
+  <script>
+    if (!localStorage.getItem('bptPortalUser')) {
+      // comment this line if you want dashboard to open without login check
+      // window.location.href = 'login.html';
+    }
+
+    const userDisplay = document.getElementById('userDisplay');
+    userDisplay.textContent = localStorage.getItem('bptPortalUser') || 'Staf Makmal';
+
+    const menuButton = document.getElementById('menuButton');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+    const logoutButton = document.getElementById('logoutButton');
+
+    function openSidebar() {
+      sidebar.classList.remove('-translate-x-full');
+      sidebarBackdrop.classList.remove('hidden');
+    }
+
+    function closeSidebar() {
+      sidebar.classList.add('-translate-x-full');
+      sidebarBackdrop.classList.add('hidden');
+    }
+
+    menuButton.addEventListener('click', openSidebar);
+    sidebarBackdrop.addEventListener('click', closeSidebar);
+
+    logoutButton.addEventListener('click', function () {
+      localStorage.removeItem('bptPortalUser');
+      localStorage.removeItem('bptPortalRemember');
+      window.location.href = 'login.html';
+    });
+
+    document.querySelectorAll('[data-module]').forEach((item) => {
+      item.addEventListener('click', () => {
+        const moduleName = item.getAttribute('data-module');
+        alert(`Modul "${moduleName}" belum dipautkan lagi. Nanti kita boleh sambungkan ke fail HTML subpage yang sebenar.`);
+      });
+    });
+  </script>
+</body>
+</html>
